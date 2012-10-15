@@ -1,5 +1,6 @@
 #Custom
 local_settings.py
+output
 
 #Python
 *.py[cod]

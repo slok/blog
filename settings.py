@@ -24,6 +24,9 @@ SOCIAL =
 OUTPUT_PATH =
 PATH =
 
+ARTICLE_URL =
+ARTICLE_SAVE_AS =
+
 # global metadata to all the contents
 DEFAULT_METADATA =
 
