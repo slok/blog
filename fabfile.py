@@ -58,6 +58,7 @@ def git_change_branch(branch):
 
 
 def git_merge_branch(branch):
+    """Merges a branch in other branch"""
     local("git merge {0}".format(branch))
 
 
@@ -67,11 +68,13 @@ def git_push(remote, branch):
 
 
 def git_commit_all(msg):
+    """Commits all the changes"""
     local("git add .")
     local("git commit -m \"{0}\"".format(msg))
 
 
 def publish():
+    """Generates and publish the new site in github pages"""
     master_branch = "master"
     publish_branch = "gh-pages"
     remote = "origin"
@@ -89,7 +92,7 @@ def publish():
     generate(ABS_ROOT_DIR)
 
     # Commit changes
-    now = time.strftime("%d %b %Y %H%M%S", time.localtime())
+    now = time.strftime("%d %b %Y %H:%M:%S", time.localtime())
     git_commit_all("Publication {0}".format(now))
 
     # Push to gh-pages branch
