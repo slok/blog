@@ -1,5 +1,447 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>slok's Blog</title><link href="http://blog.xlarrakoetxea.org/" rel="alternate"></link><link href="http://blog.xlarrakoetxea.org/feeds/all-en.atom.xml" rel="self"></link><id>http://blog.xlarrakoetxea.org/</id><updated>2012-10-15T13:59:00+02:00</updated><entry><title>Hello world!</title><link href="http://blog.xlarrakoetxea.org/hello-world.html" rel="alternate"></link><updated>2012-10-15T13:59:00+02:00</updated><author><name>Xabier Larrakoetxea</name></author><id>tag:blog.xlarrakoetxea.org,2012-10-15:hello-world.html</id><summary type="html">&lt;p&gt;This is the first post of many. I will start this blog with a classic:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>slok's Blog</title><link href="http://blog.xlarrakoetxea.org/" rel="alternate"></link><link href="http://blog.xlarrakoetxea.org/feeds/all-en.atom.xml" rel="self"></link><id>http://blog.xlarrakoetxea.org/</id><updated>2012-10-15T18:00:00+02:00</updated><entry><title>Creating a blog with Pelican</title><link href="http://blog.xlarrakoetxea.org/posts/2012/10/creating-a-blog-with-pelican/" rel="alternate"></link><updated>2012-10-15T18:00:00+02:00</updated><author><name>Xabier Larrakoetxea</name></author><id>tag:blog.xlarrakoetxea.org,2012-10-15:posts/2012/10/creating-a-blog-with-pelican/</id><summary type="html">&lt;p&gt;Like I said in my &lt;a class="reference external" href="posts/2012/10/hello-world"&gt;first post&lt;/a&gt;, this blog is an static blog made with &lt;a class="reference external" href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;
+and &lt;a class="reference external" href="https://help.github.com/categories/20/articles/"&gt;github pages&lt;/a&gt;. This is awesome, for various reasons, it's simple, tidy, easy, scalable and the best of all, is &lt;em&gt;funny&lt;/em&gt;. Also Pelican uses &lt;a class="reference external" href="http://pygments.org/"&gt;Pygments&lt;/a&gt;
+for the syntax highlighting and as you know this will be a very techie blog,
+so I need the perfect tool for this, and yes, it's Pygments.&lt;/p&gt;
+&lt;p&gt;To write the posts I use &lt;a class="reference external" href="http://docutils.sourceforge.net/rst.html"&gt;reStructuredText&lt;/a&gt;, But I could do it in &lt;a class="reference external" href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt;, that I love it too.&lt;/p&gt;
+&lt;p&gt;And last but not least, the blog is hosted on github pages, so I can track all
+the versions of each file, wich means that I have all the version of each post.
+Let's start!&lt;/p&gt;
+&lt;div class="section" id="requirements"&gt;
+&lt;h2&gt;Requirements&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Github account&lt;/li&gt;
+&lt;li&gt;Python (&amp;gt;= 2.7)&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="github-and-gh-pages"&gt;
+&lt;h2&gt;Github and GH-pages&lt;/h2&gt;
+&lt;p&gt;We need to make a respository. For example &lt;strong&gt;blog&lt;/strong&gt;, so our blog url will be
+&lt;strong&gt;user.github.com/blog&lt;/strong&gt; If you want to set a custom domain see the &lt;a class="reference internal" href="#optional"&gt;optional&lt;/a&gt;
+section.&lt;/p&gt;
+&lt;p&gt;The site content to render (HTML, CSS...) needs to be in the gh-pages branch.
+This leads to a personal organization of the blog:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="organization"&gt;
+&lt;h2&gt;Organization&lt;/h2&gt;
+&lt;p&gt;I like to be tidy so the HTML and that stuff will be only in the place that is
+needed: &lt;cite&gt;gh-pages&lt;/cite&gt; branch, in the master branch I will have all my other things:
+settings, fabfile, requirements...
+About this I will talk later.&lt;/p&gt;
+&lt;p&gt;Right now my &lt;strong&gt;master&lt;/strong&gt; branch is this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.
+|-- README.rst
+|-- fabfile.py
+|-- local_settings.py
+|-- requirements.txt
+|-- settings.py
+`-- src
+    |-- images
+    `-- posts
+        `-- 2012
+            `-- 10
+                |-- creating-a-blog-with-pelican.rst
+                `-- hello-world.rst
+&lt;/pre&gt;
+&lt;p&gt;And only that, the automation, util, config files and the posts. In the other
+hand gh-pages has all this, plus the generated html, but I'm not working in that
+branch so it doesn't matter to be a mess :)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="installing-python-tools"&gt;
+&lt;h2&gt;Installing Python tools&lt;/h2&gt;
+&lt;p&gt;If you already have this tools you can go to the next section:&lt;/p&gt;
+&lt;p&gt;Install &lt;a class="reference external" href="http://www.pip-installer.org/en/latest/"&gt;pip&lt;/a&gt; for managing the python packages:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ easy_install pip
+&lt;/pre&gt;
+&lt;p&gt;Install &lt;a class="reference external" href="http://www.virtualenv.org/en/latest/"&gt;Virtualenv&lt;/a&gt; to manage the virtual envs:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ pip install virtualenv
+&lt;/pre&gt;
+&lt;p&gt;To manage easyly the virtualenvs is recommended to install &lt;a class="reference external" href="http://www.doughellmann.com/projects/virtualenvwrapper/"&gt;virtualenwrapper&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ pip install virtualenvwrapper
+&lt;/pre&gt;
+&lt;p&gt;We need to configure virtualenwrapper with some environment vars, so for example
+in your user bashrc (&lt;strong&gt;~/.bashrc&lt;/strong&gt;) add this (maybe &lt;strong&gt;virtualenwrapper.sh&lt;/strong&gt; is in other
+location, change if necessary):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#Virtualenvwrapper&lt;/span&gt;
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;WORKON_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.virtualenvs
+&lt;span class="nb"&gt;source&lt;/span&gt; /usr/bin/virtualenvwrapper.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After this, log again in a terminal and now you should be able to create a virtualenv.
+If you don't know what is a virtual env. In a few words: An isolated Python system.
+So Now you can install, uninstall and delete all the packages you
+want without messing up the systems Python installation.
+Also is a good choice for testing different versions of a project, Python
+versions included.&lt;/p&gt;
+&lt;p&gt;We create a virtualenv:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ mkvirtualenv blog
+&lt;/pre&gt;
+&lt;p&gt;This will create and insert us in that virtualenv. After the creation if we
+want to enter in that virtualenv we use:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ workon blog
+&lt;/pre&gt;
+&lt;p&gt;And to leave:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ deactivate
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="installing-pelican"&gt;
+&lt;h2&gt;Installing pelican&lt;/h2&gt;
+&lt;p&gt;Install pelican, this is obvious:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ pip install pelican
+&lt;/pre&gt;
+&lt;p&gt;If you want to use markdown over reStructuredText, install it, reStructuredText
+is installed by default:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ pip install markdown
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="creating-the-blog"&gt;
+&lt;h2&gt;Creating the blog&lt;/h2&gt;
+&lt;p&gt;Well we have pelican installed, we are in a virtualenv and now is time to create
+the blog. But before start messing up with files. I will explain the steps to
+publish a post. Is very important to understand this flow.
+&lt;em&gt;In parenthesis is the git branch we are working on&lt;/em&gt;:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;(&lt;strong&gt;master&lt;/strong&gt;) Create the post in rst or md (rst and md are abbreviations for resTructuredText and markdown)&lt;/li&gt;
+&lt;li&gt;(&lt;strong&gt;master&lt;/strong&gt;) Generate the HTML&lt;/li&gt;
+&lt;li&gt;(&lt;strong&gt;master&lt;/strong&gt;) Check the post in a local server&lt;/li&gt;
+&lt;li&gt;(&lt;strong&gt;master&lt;/strong&gt;) We could delete the output but dones't matter if we don't because git will ignore with our gitignore file&lt;/li&gt;
+&lt;li&gt;(&lt;strong&gt;gh-pages&lt;/strong&gt;) Merge master branch&lt;/li&gt;
+&lt;li&gt;(&lt;strong&gt;gh-pages&lt;/strong&gt;) Generate the HTML&lt;/li&gt;
+&lt;li&gt;(&lt;strong&gt;gh-pages&lt;/strong&gt;) push all the files (normally all the new HTML)&lt;/li&gt;
+&lt;li&gt;(&lt;strong&gt;master&lt;/strong&gt;) push all the files (normally only one post)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The first thing is to create the git repository. So we clone the repo from the
+first step and enter in the directory:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git clone git&amp;#64;github.com:user/blog.git
+$ cd ./blog
+&lt;/pre&gt;
+&lt;p&gt;Add this to your .gitignore file:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+#Custom
+local_settings.py
+output
+&lt;/pre&gt;
+&lt;p&gt;If you don't have, create in the root folder a file named .gitignore file. This
+file will ignore all the files that match with the names of the file:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+#Custom
+local_settings.py
+output
+
+#Python
+*.py[cod]
+
+# C extensions
+*.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+&lt;/pre&gt;
+&lt;p&gt;Now we will create a pelican settings file called &lt;strong&gt;local_settings.py&lt;/strong&gt;, this file
+will not be commited to the git repo, maybe has personal data. But we will upload
+a blank template anmed &lt;strong&gt;settings.py&lt;/strong&gt;, so we create also this one, that has the
+same variables as &lt;strong&gt;local_settings.py&lt;/strong&gt; but without
+the vars data. Edit the data you need
+(You can store the &lt;strong&gt;local_settings.py&lt;/strong&gt; data in a private gist manually):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
+
+&lt;span class="n"&gt;AUTHOR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Chuck norris&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;SITENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;chuck&amp;#39;s Blog&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;SITEURL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://blog.chucknorris.org&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;TIMEZONE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Europe/Madrid&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;GITHUB_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://github.com/chucknorris/&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;DISQUS_SITENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;xxxxxxxxxxxxxxxxxxxxxx&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;PDF_GENERATOR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+&lt;span class="n"&gt;REVERSE_CATEGORY_ORDER&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;span class="n"&gt;LOCALE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;en_US&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;DEFAULT_PAGINATION&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+
+&lt;span class="c"&gt;#THEME = &amp;quot;mnmlist&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;FEED_RSS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;feeds/all.rss.xml&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;CATEGORY_FEED_RSS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;feeds/&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;.rss.xml&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;LINKS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Stalone&amp;#39;s blog&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://stalone.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),)&lt;/span&gt;
+
+&lt;span class="n"&gt;SOCIAL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;twitter&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://twitter.com/chucknorris&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;linkedin&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://www.linkedin.com/in/chucknorris&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;github&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://github.com/chucknorris&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),)&lt;/span&gt;
+
+&lt;span class="n"&gt;OUTPUT_PATH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;output&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;PATH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;src/posts&amp;quot;&lt;/span&gt;
+
+&lt;span class="n"&gt;ARTICLE_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;posts/{date:%Y}/{date:%m}/{slug}/&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;ARTICLE_SAVE_AS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;posts/{date:%Y}/{date:%m}/{slug}/index.html&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# static paths will be copied under the same name&lt;/span&gt;
+&lt;span class="n"&gt;STATIC_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;src/images&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now that we have our &lt;strong&gt;settings.py&lt;/strong&gt; and &lt;strong&gt;local_settings.py&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;To generate the static html we use:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ pelican -s ./local_settings.py
+&lt;/pre&gt;
+&lt;p&gt;This will take all the settings and apply, but if we want to override some settings
+we could do. For example to specify the ouput we use &lt;strong&gt;-o&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ pelican -s ./local_settings.py -o /tmp/myBlog
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="creating-a-post"&gt;
+&lt;h2&gt;Creating a post&lt;/h2&gt;
+&lt;p&gt;To be tidy we create a directory structure of &lt;strong&gt;/posts/{year}/{month}/&lt;/strong&gt; where
+the posts will be written:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ mkdir -p ./posts/2012/10
+&lt;/pre&gt;
+&lt;p&gt;Create a post named &lt;strong&gt;hello-world.rst&lt;/strong&gt; or &lt;strong&gt;hello-world.md&lt;/strong&gt;, that depends on your
+preferences of syntax. Add This example and edit as you want, title, user...
+(is in rst):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Hello world!
+##############
+
+:date: 2012-10-15 23:06
+:tags: helloworld, blog, first
+:category: Blog
+:author: Chuck Norris
+
+This is our first post!! A classic
+
+.. code-block:: python
+
+    print(&amp;quot;Hello world!&amp;quot;)
+
+See you soon ;)
+&lt;/pre&gt;
+&lt;p&gt;Save and generate the static blog. If all goes fine. Then we have a new
+directory named &lt;strong&gt;output&lt;/strong&gt;, our blog is there, so, to test it , insert there and
+run a simple server:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ cd ./output
+$ python -m SimpleHTTPServer
+&lt;/pre&gt;
+&lt;p&gt;Point your browser to &lt;strong&gt;127.0.0.1:8000&lt;/strong&gt; and you will see the blog. If all is
+correct then is time to deploy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="deploying-the-blog"&gt;
+&lt;h2&gt;Deploying the blog&lt;/h2&gt;
+&lt;p&gt;In a previous section I explained the process to deploy, if you have understand
+(you should ¬¬) this will be easy. We start the process in the &lt;strong&gt;master&lt;/strong&gt; branch&lt;/p&gt;
+&lt;p&gt;Commit all changes in the master branch (the new post), this may vary depends
+on the files you haven't commited yet (gitignore, settings...):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git add .
+$ git commit -m &amp;quot;First post: Hello world&amp;quot;
+&lt;/pre&gt;
+&lt;p&gt;Push it to master (remember, this doesn't deploy the page, this is our source):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git push origin master
+&lt;/pre&gt;
+&lt;p&gt;If we havent the &lt;strong&gt;gh-pages&lt;/strong&gt; branch we create:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git branch gh-pages
+&lt;/pre&gt;
+&lt;p&gt;Change to &lt;strong&gt;gh-pages&lt;/strong&gt; and merge the master branch:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git checkout gh-pages
+$ git merge master
+&lt;/pre&gt;
+&lt;p&gt;Now generate the HTML. But wait! github doesn't know that our webpage is in
+&lt;strong&gt;output&lt;/strong&gt; dir, so we need to put our generated HTML in the root of the
+project, to do that we replace the settings outputdir in the command:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ pelican -s ./local_settings.py -o ./
+&lt;/pre&gt;
+&lt;p&gt;We are ready to deploy, commit all and push:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git add .
+$ git commit -m &amp;quot;Publish hello world post&amp;quot;
+$ git push origin gh-pages
+&lt;/pre&gt;
+&lt;p&gt;We change again to our master branch and we are done :):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git checkout master
+&lt;/pre&gt;
+&lt;p&gt;point your browser to &lt;strong&gt;you.github.com/blog&lt;/strong&gt; , awesome!!&lt;/p&gt;
+&lt;p&gt;This could be tedious, so we can automate the process with &lt;a class="reference external" href="http://fabfile.org"&gt;fabric&lt;/a&gt;. I have
+created a fabfile that automates it. See in &lt;a class="reference internal" href="#optional"&gt;optional&lt;/a&gt;. section&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;span id="optional"&gt;&lt;/span&gt;&lt;h2&gt;Optional&lt;/h2&gt;
+&lt;div class="section" id="custom-domain"&gt;
+&lt;h3&gt;Custom domain&lt;/h3&gt;
+&lt;p&gt;If you want a custom domain you have to create in the gh-pages branch a file
+called &lt;strong&gt;CNAME&lt;/strong&gt; and put there your domain. For example:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+blog.chucknorris.com
+&lt;/pre&gt;
+&lt;p&gt;In your domain provider point the domain to &lt;strong&gt;204.232.175.78&lt;/strong&gt; with a record
+type of &lt;strong&gt;A&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="automation"&gt;
+&lt;h3&gt;Automation&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://fabfile.org"&gt;Fabric&lt;/a&gt; is a tool, an awesome tool! to automate things, is most used for remote
+servers, but also works fine for local automation. put this script in the
+root path of the blog in the master branch. You need fabric installe to use it:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ pip install fabric
+&lt;/pre&gt;
+&lt;p&gt;Now you can use like this:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;fab generate: generates the html for developing (while writing)&lt;/li&gt;
+&lt;li&gt;fab serve: Serves the blog in local&lt;/li&gt;
+&lt;li&gt;fab publish: Does all the process of change, commit and publish gh-pages branch, needs to be in master branch while executing the command&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The &lt;strong&gt;fabfile.py&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fabric.api&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fabric.utils&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;puts&lt;/span&gt;
+
+&lt;span class="c"&gt;#If no local_settings.py then settings.py&lt;/span&gt;
+&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;local_settings&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OUTPUT_PATH&lt;/span&gt;
+    &lt;span class="n"&gt;SETTINGS_FILE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;local_settings.py&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;ImportError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;settings&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OUTPUT_PATH&lt;/span&gt;
+    &lt;span class="n"&gt;SETTINGS_FILE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;settings.py&amp;quot;&lt;/span&gt;
+
+
+&lt;span class="c"&gt;# Get directories&lt;/span&gt;
+&lt;span class="n"&gt;ABS_ROOT_DIR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dirname&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abspath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__file__&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;ABS_SETTINGS_FILE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ABS_ROOT_DIR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;SETTINGS_FILE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;ABS_OUTPUT_PATH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ABS_ROOT_DIR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;OUTPUT_PATH&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="c"&gt;# Commands&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;generate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Generates the pelican static site&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;pelican -s {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ABS_SETTINGS_FILE&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;pelican -s {0} -o {1}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ABS_SETTINGS_FILE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;destroy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Destroys the pelican static site&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;rm -r {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ABS_ROOT_DIR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;OUTPUT_PATH&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;cmd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;rm -r {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;warn_only&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cmd&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;failed&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;puts&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Already deleted&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;serve&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Serves the site in the development webserver&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ABS_OUTPUT_PATH&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;lcd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ABS_OUTPUT_PATH&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;python -m SimpleHTTPServer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;git_change_branch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Changes from one branch to other in a git repo&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;git checkout {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;git_merge_branch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Merges a branch in other branch&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;git merge {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;git_push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Pushes the git changes to git remote repo&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;git push {0} {1}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;git_commit_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Commits all the changes&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;git add .&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;git commit -m &lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;{0}&lt;/span&gt;&lt;span class="se"&gt;\&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;publish&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Generates and publish the new site in github pages&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;master_branch&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;master&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;publish_branch&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;gh-pages&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;remote&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;origin&amp;quot;&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Push original changes to master&lt;/span&gt;
+    &lt;span class="c"&gt;#push(remote, master_branch)&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Change to gh-pages branch&lt;/span&gt;
+    &lt;span class="n"&gt;git_change_branch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;publish_branch&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Merge master into gh-pages&lt;/span&gt;
+    &lt;span class="n"&gt;git_merge_branch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;master_branch&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Generate the html&lt;/span&gt;
+    &lt;span class="n"&gt;generate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ABS_ROOT_DIR&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Commit changes&lt;/span&gt;
+    &lt;span class="n"&gt;now&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strftime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt; %b %Y %H:%M:%S&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;localtime&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+    &lt;span class="n"&gt;git_commit_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Publication {0}&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+    &lt;span class="c"&gt;# Push to gh-pages branch&lt;/span&gt;
+    &lt;span class="n"&gt;git_push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;remote&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;publish_branch&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c"&gt;# go to master&lt;/span&gt;
+    &lt;span class="n"&gt;git_change_branch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;master_branch&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I hope you enyoyed and liked doing an awesome static blog&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary><category term="howto"></category><category term="static"></category><category term="blog"></category><category term="pelican"></category></entry><entry><title>Hello world!</title><link href="http://blog.xlarrakoetxea.org/posts/2012/10/hello-world/" rel="alternate"></link><updated>2012-10-15T13:59:00+02:00</updated><author><name>Xabier Larrakoetxea</name></author><id>tag:blog.xlarrakoetxea.org,2012-10-15:posts/2012/10/hello-world/</id><summary type="html">&lt;p&gt;This is the first post of many. I will start this blog with a classic:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;say_hello&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hello world!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
