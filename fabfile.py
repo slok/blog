@@ -1,6 +1,8 @@
 import os
+import time
 
-from fabric.api import local, lcd
+from fabric.api import local, lcd, settings
+from fabric.utils import puts
 
 #If no local_settings.py then settings.py
 try:
@@ -18,14 +20,29 @@ ABS_OUTPUT_PATH = os.path.join(ABS_ROOT_DIR, OUTPUT_PATH)
 
 
 # Commands
-def generate():
+def generate(output=None):
     """Generates the pelican static site"""
-    local("pelican -s {0}".format(ABS_SETTINGS_FILE))
+
+    if not output:
+        cmd = "pelican -s {0}".format(ABS_SETTINGS_FILE)
+    else:
+        cmd = "pelican -s {0} -o {1}".format(ABS_SETTINGS_FILE, output)
+
+    local(cmd)
 
 
-def destroy():
+def destroy(output=None):
     """Destroys the pelican static site"""
-    local("rm -r {0}".format(os.path.join(ABS_ROOT_DIR, OUTPUT_PATH)))
+
+    if not output:
+        cmd = "rm -r {0}".format(os.path.join(ABS_ROOT_DIR, OUTPUT_PATH))
+    else:
+        cmd = "rm -r {0}".format(output)
+
+    with settings(warn_only=True):
+        result = local(cmd)
+    if result.failed:
+        puts("Already deleted")
 
 
 def serve():
@@ -40,6 +57,43 @@ def git_change_branch(branch):
     local("git checkout {0}".format(branch))
 
 
+def git_merge_branch(branch):
+    local("git merge {0}".format(branch))
+
+
 def git_push(remote, branch):
     """Pushes the git changes to git remote repo"""
     local("git push {0} {1}".format(remote, branch))
+
+
+def git_commit_all(msg):
+    local("git add .")
+    local("git commit -m {0}".format(msg))
+
+
+def publish():
+    master_branch = "master"
+    publish_branch = "gh-pages"
+    remote = "origin"
+
+    # Push original changes to master
+    #push(remote, master_branch)
+
+    # Change to gh-pages branch
+    git_change_branch(publish_branch)
+
+    # Merge master into gh-pages
+    git_merge_branch(master_branch)
+
+    # Generate the html
+    generate(ABS_ROOT_DIR)
+
+    # Commit changes
+    now = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime())
+    git_commit_all("Publication {0}".format(now))
+
+    # Push to gh-pages branch
+    git_push(remote, publish_branch)
+
+    # go to master
+    git_change_branch(master_branch)
