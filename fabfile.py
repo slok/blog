@@ -68,7 +68,7 @@ def git_push(remote, branch):
 
 def git_commit_all(msg):
     local("git add .")
-    local("git commit -m {0}".format(msg))
+    local("git commit -m \"{0}\"".format(msg))
 
 
 def publish():
@@ -89,7 +89,7 @@ def publish():
     generate(ABS_ROOT_DIR)
 
     # Commit changes
-    now = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime())
+    now = time.strftime("%d %b %Y %H%M%S", time.localtime())
     git_commit_all("Publication {0}".format(now))
 
     # Push to gh-pages branch
