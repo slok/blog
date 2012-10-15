@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>slok's Blog</title>
+        <title>Hello world!</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
         
@@ -39,20 +39,22 @@
                 
                 
                 
-                    <li ><a href="./category/blog.html">Blog</a></li>
+                    <li class="active"><a href="./category/blog.html">Blog</a></li>
                 
                 </ul></nav>
         </header><!-- /#banner -->
-                
-
-            
-
         
-        
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="./hello-world.html">Hello world!</a></h1> 
-                    <footer class="post-info">
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="hello-world.html" rel="bookmark"
+           title="Permalink to Hello world!">Hello world!</a></h1>
+      
+    </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
         <abbr class="published" title="2012-10-15T13:59:00">
                 Mon 15 October 2012
         </abbr>
@@ -66,7 +68,8 @@
 <p>tags: <a href="./tag/helloworld.html">helloworld</a><a href="./tag/blog.html">blog</a><a href="./tag/first.html">first</a></p>
 
 
-</footer><!-- /.post-info --><p>This is the first post of many. I will start this blog with a classic:</p>
+</footer><!-- /.post-info -->
+      <p>This is the first post of many. I will start this blog with a classic:</p>
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">say_hello</span><span class="p">():</span>
     <span class="k">print</span><span class="p">(</span><span class="s">&quot;Hello world!&quot;</span><span class="p">)</span>
 
@@ -85,28 +88,25 @@ GNU/Linux, programming and scalability.</p>
 <li>Is fun  and geeky :)</li>
 </ul>
 <p>I think that I made my point. <strong>See you soon with a techie and geeky post</strong></p>
-<p>There are <a href="./hello-world.html#disqus_thread">comments</a>.</p>
-                </article>
-                
-                    
-<p class="paginator">
-    
-    Page 1 / 1
-    
-</p>
 
-                
-            </aside><!-- /#featured -->
-            
-        
-        
-        
-            </ol><!-- /#posts-list -->
-            
-            </section><!-- /#content -->
-        
+    </div><!-- /.entry-content -->
+    
+    <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_identifier = "hello-world.html";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://sloks-static-blog.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
     
 
+  </article>
+</section>
 
         <section id="extras" class="body">
         

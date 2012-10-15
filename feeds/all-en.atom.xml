@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>slok's Blog</title><link href="http://blog.xlarrakoetxea.org/" rel="alternate"></link><link href="http://blog.xlarrakoetxea.org/feeds/all-en.atom.xml" rel="self"></link><id>http://blog.xlarrakoetxea.org/</id><updated>2012-10-15T13:59:00+02:00</updated><entry><title>Hello world!</title><link href="http://blog.xlarrakoetxea.org/hello-world.html" rel="alternate"></link><updated>2012-10-15T13:59:00+02:00</updated><author><name>Xabier Larrakoetxea</name></author><id>tag:blog.xlarrakoetxea.org,2012-10-15:hello-world.html</id><summary type="html">&lt;p&gt;This is the first post of many. I will start this blog with a classic:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;say_hello&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hello world!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;say_hello&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This blog will have one theme in mind: &lt;strong&gt;Technology&lt;/strong&gt;. If I am more specific:
+GNU/Linux, programming and scalability.&lt;/p&gt;
+&lt;p&gt;The blog is made with &lt;a class="reference external" href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt; and &lt;a class="reference external" href="https://help.github.com/categories/20/articles/"&gt;gh-pages&lt;/a&gt;. The question maybe is &lt;em&gt;Why I want this blog to be static?&lt;/em&gt; Well I will resume this in a list:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Simple (I like simple things: &lt;a class="reference external" href="http://www.python.org/"&gt;Python&lt;/a&gt;, &lt;a class="reference external" href="http://www.slackware.com/"&gt;Slackware&lt;/a&gt;...)&lt;/li&gt;
+&lt;li&gt;Scalable (all is static!)&lt;/li&gt;
+&lt;li&gt;Posts in &lt;a class="reference external" href="http://docutils.sourceforge.net/rst.html"&gt;reStructuredText&lt;/a&gt; and/or &lt;a class="reference external" href="http://daringfireball.net/projects/markdown/"&gt;markdown&lt;/a&gt; syntax (This can be ported easily in the future)&lt;/li&gt;
+&lt;li&gt;Github pages FTW!&lt;/li&gt;
+&lt;li&gt;Pelican is awesome (&lt;a class="reference external" href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt; too, but I prefer python to ruby)&lt;/li&gt;
+&lt;li&gt;Is fun  and geeky :)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I think that I made my point. &lt;strong&gt;See you soon with a techie and geeky post&lt;/strong&gt;&lt;/p&gt;
+</summary><category term="helloworld"></category><category term="blog"></category><category term="first"></category></entry></feed>
