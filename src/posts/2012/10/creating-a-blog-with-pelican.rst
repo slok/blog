@@ -2,9 +2,10 @@ Creating a blog with Pelican
 ############################
 
 :date: 2012-10-15 18:00
-:tags: howto, static, blog, pelican
+:tags: howto, static, blog, pelican, python
 :category: Blog
 :author: Xabier Larrakoetxea
+:slug: creating-a-blog-with-pelican
 
 Like I said in my `first post <posts/2012/10/hello-world>`_, this blog is an static blog made with `Pelican <http://blog.getpelican.com/>`_
 and `github pages <https://help.github.com/categories/20/articles/>`_. This is awesome, for various reasons, it's simple, tidy, easy, scalable and the best of all, is *funny*. Also Pelican uses `Pygments <http://pygments.org/>`_
@@ -22,15 +23,15 @@ Requirements
 ------------
 
 - Github account
-- Python (>= 2.7)
+- Python (>= 2.6)
 - Git
 
 
 Github and GH-pages
 -------------------
 
-We need to make a respository. For example **blog**, so our blog url will be
-**user.github.com/blog** If you want to set a custom domain see the optional_  
+We need to make a respository. For example ``blog``, so our blog url will be
+``user.github.com/blog`` If you want to set a custom domain see the optional_  
 section.
 
 The site content to render (HTML, CSS...) needs to be in the gh-pages branch.
@@ -41,11 +42,11 @@ Organization
 ------------
 
 I like to be tidy so the HTML and that stuff will be only in the place that is 
-needed: `gh-pages` branch, in the master branch I will have all my other things:
+needed: ``gh-pages`` branch, in the master branch I will have all my other things:
 settings, fabfile, requirements... 
 About this I will talk later.
 
-Right now my **master** branch is this::
+Right now my ``master`` branch is this::
 
     .
     |-- README.rst
@@ -82,8 +83,8 @@ To manage easyly the virtualenvs is recommended to install `virtualenwrapper <ht
 
     $ pip install virtualenvwrapper
 
-We need to configure virtualenwrapper with some environment vars, so for example
-in your user bashrc (**~/.bashrc**) add this (maybe **virtualenwrapper.sh** is in other
+We need to configure virtualenvwrapper with some environment vars, so for example
+in your user bashrc (``~/.bashrc``) add this (maybe ``virtualenvwrapper.sh`` is in other
 location, change if necessary):
 
 .. code-block:: bash
@@ -133,14 +134,14 @@ the blog. But before start messing up with files. I will explain the steps to
 publish a post. Is very important to understand this flow. 
 *In parenthesis is the git branch we are working on*:
 
-- (**master**) Create the post in rst or md (rst and md are abbreviations for resTructuredText and markdown)
-- (**master**) Generate the HTML
-- (**master**) Check the post in a local server
-- (**master**) We could delete the output but dones't matter if we don't because git will ignore with our gitignore file
-- (**gh-pages**) Merge master branch
-- (**gh-pages**) Generate the HTML
-- (**gh-pages**) push all the files (normally all the new HTML)
-- (**master**) push all the files (normally only one post)
+- (``master``) Create the post in rst or md (rst and md are abbreviations for resTructuredText and markdown)
+- (``master``) Generate the HTML
+- (``master``) Check the post in a local server
+- (``master``) We could delete the output but dones't matter if we don't because git will ignore with our gitignore file
+- (``gh-pages``) Merge master branch
+- (``gh-pages``) Generate the HTML
+- (``gh-pages``) push all the files (normally all the new HTML)
+- (``master``) push all the files (normally only one post)
 
 
 The first thing is to create the git repository. So we clone the repo from the
@@ -155,7 +156,7 @@ Add this to your .gitignore file::
     local_settings.py
     output
 
-If you don't have, create in the root folder a file named .gitignore file. This
+If you don't have, create in the root folder a file named ``.gitignore`` file. This
 file will ignore all the files that match with the names of the file::
 
     #Custom
@@ -200,12 +201,12 @@ file will ignore all the files that match with the names of the file::
     .pydevproject
 
 
-Now we will create a pelican settings file called **local_settings.py**, this file
+Now we will create a pelican settings file called ``local_settings.py``, this file
 will not be commited to the git repo, maybe has personal data. But we will upload
-a blank template anmed **settings.py**, so we create also this one, that has the 
-same variables as **local_settings.py** but without
+a blank template named ``settings.py``, so we create also this one, that has the 
+same variables as ``local_settings.py`` but without
 the vars data. Edit the data you need 
-(You can store the **local_settings.py** data in a private gist manually):
+(You can store the ``local_settings.py`` data in a private gist manually):
 
 .. code-block:: python
 
@@ -243,26 +244,26 @@ the vars data. Edit the data you need
     # static paths will be copied under the same name
     STATIC_PATHS = ["src/images", ]
 
-Now that we have our **settings.py** and **local_settings.py**. 
+Now that we have our ``settings.py`` and ``local_settings.py``. 
 
 To generate the static html we use::
 
     $ pelican -s ./local_settings.py
 
 This will take all the settings and apply, but if we want to override some settings
-we could do. For example to specify the ouput we use **-o**::
+we could do. For example to specify the ouput we use ``-o``::
 
     $ pelican -s ./local_settings.py -o /tmp/myBlog    
 
 Creating a post
 ---------------
 
-To be tidy we create a directory structure of **/posts/{year}/{month}/** where
+To be tidy we create a directory structure of ``/posts/{year}/{month}/`` where
 the posts will be written::
     
     $ mkdir -p ./posts/2012/10
 
-Create a post named **hello-world.rst** or **hello-world.md**, that depends on your
+Create a post named ``hello-world.rst`` or ``hello-world.md``, that depends on your
 preferences of syntax. Add This example and edit as you want, title, user... 
 (is in rst)::
 
@@ -283,21 +284,21 @@ preferences of syntax. Add This example and edit as you want, title, user...
     See you soon ;)
 
 Save and generate the static blog. If all goes fine. Then we have a new
-directory named **output**, our blog is there, so, to test it , insert there and
+directory named ``output``, our blog is there, so, to test it , insert there and
 run a simple server::
 
     $ cd ./output
     $ python -m SimpleHTTPServer
 
-Point your browser to **127.0.0.1:8000** and you will see the blog. If all is
+Point your browser to ``127.0.0.1:8000`` and you will see the blog. If all is
 correct then is time to deploy.
 
 
 Deploying the blog
 ------------------
 
-In a previous section I explained the process to deploy, if you have understand
-(you should ¬¬) this will be easy. We start the process in the **master** branch
+In a previous section I explained the process to deploy, if you have understood
+(you should ¬¬) this will be easy. We start the process in the ``master`` branch
 
 Commit all changes in the master branch (the new post), this may vary depends
 on the files you haven't commited yet (gitignore, settings...)::
@@ -309,17 +310,17 @@ Push it to master (remember, this doesn't deploy the page, this is our source)::
 
     $ git push origin master
 
-If we havent the **gh-pages** branch we create::
+If we havent the ``gh-pages`` branch we create::
 
     $ git branch gh-pages
 
-Change to **gh-pages** and merge the master branch::
+Change to ``gh-pages`` and merge the master branch::
     
     $ git checkout gh-pages
     $ git merge master
 
 Now generate the HTML. But wait! github doesn't know that our webpage is in
-**output** dir, so we need to put our generated HTML in the root of the 
+``output`` dir, so we need to put our generated HTML in the root of the 
 project, to do that we replace the settings outputdir in the command::
 
     $ pelican -s ./local_settings.py -o ./
@@ -334,7 +335,7 @@ We change again to our master branch and we are done :)::
     
     $ git checkout master
 
-point your browser to **you.github.com/blog** , awesome!!
+point your browser to ``you.github.com/blog`` , awesome!!
     
 This could be tedious, so we can automate the process with `fabric <http://fabfile.org>`_. I have 
 created a fabfile that automates it. See in optional_. section
@@ -349,12 +350,12 @@ Custom domain
 ~~~~~~~~~~~~~
 
 If you want a custom domain you have to create in the gh-pages branch a file
-called **CNAME** and put there your domain. For example::
+called ``CNAME`` and put there your domain. For example::
     
     blog.chucknorris.com
 
-In your domain provider point the domain to **204.232.175.78** with a record 
-type of **A**
+In your domain provider point the domain to ``204.232.175.78`` with a record 
+type of ``A``
 
 
 Automation
@@ -368,11 +369,11 @@ root path of the blog in the master branch. You need fabric installe to use it::
 
 Now you can use like this:
     
-    - fab generate: generates the html for developing (while writing)
-    - fab serve: Serves the blog in local
-    - fab publish: Does all the process of change, commit and publish gh-pages branch, needs to be in master branch while executing the command
+- ``fab generate``: generates the html for developing (while writing)
+- ``fab serve``: Serves the blog in local
+- ``fab publish``: Does all the process of change, commit and publish gh-pages branch, needs to be in master branch while executing the command
 
-The **fabfile.py**:
+The ``fabfile.py``:
 
 .. code-block:: python
     
