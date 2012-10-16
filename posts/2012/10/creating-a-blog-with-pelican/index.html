@@ -19,7 +19,7 @@
 
         <!-- Javascript-->
         <script src="../../../.././theme/js/invisible-menu-scroll.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
         <script type="text/javascript"> 
           $(function() {
             invisibleMenu();
@@ -77,14 +77,14 @@ Let's start!</p>
 <h2>Requirements</h2>
 <ul class="simple">
 <li>Github account</li>
-<li>Python (&gt;= 2.7)</li>
+<li>Python (&gt;= 2.6)</li>
 <li>Git</li>
 </ul>
 </div>
 <div class="section" id="github-and-gh-pages">
 <h2>Github and GH-pages</h2>
-<p>We need to make a respository. For example <strong>blog</strong>, so our blog url will be
-<strong>user.github.com/blog</strong> If you want to set a custom domain see the <a class="reference internal" href="#optional">optional</a>
+<p>We need to make a respository. For example <tt class="docutils literal">blog</tt>, so our blog url will be
+<tt class="docutils literal">user.github.com/blog</tt> If you want to set a custom domain see the <a class="reference internal" href="#optional">optional</a>
 section.</p>
 <p>The site content to render (HTML, CSS...) needs to be in the gh-pages branch.
 This leads to a personal organization of the blog:</p>
@@ -92,10 +92,10 @@ This leads to a personal organization of the blog:</p>
 <div class="section" id="organization">
 <h2>Organization</h2>
 <p>I like to be tidy so the HTML and that stuff will be only in the place that is
-needed: <cite>gh-pages</cite> branch, in the master branch I will have all my other things:
+needed: <tt class="docutils literal"><span class="pre">gh-pages</span></tt> branch, in the master branch I will have all my other things:
 settings, fabfile, requirements...
 About this I will talk later.</p>
-<p>Right now my <strong>master</strong> branch is this:</p>
+<p>Right now my <tt class="docutils literal">master</tt> branch is this:</p>
 <pre class="literal-block">
 .
 |-- README.rst
@@ -130,8 +130,8 @@ $ pip install virtualenv
 <pre class="literal-block">
 $ pip install virtualenvwrapper
 </pre>
-<p>We need to configure virtualenwrapper with some environment vars, so for example
-in your user bashrc (<strong>~/.bashrc</strong>) add this (maybe <strong>virtualenwrapper.sh</strong> is in other
+<p>We need to configure virtualenvwrapper with some environment vars, so for example
+in your user bashrc (<tt class="docutils literal"><span class="pre">~/.bashrc</span></tt>) add this (maybe <tt class="docutils literal">virtualenvwrapper.sh</tt> is in other
 location, change if necessary):</p>
 <div class="highlight"><pre><span class="c">#Virtualenvwrapper</span>
 <span class="nb">export </span><span class="nv">WORKON_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.virtualenvs
@@ -176,14 +176,14 @@ the blog. But before start messing up with files. I will explain the steps to
 publish a post. Is very important to understand this flow.
 <em>In parenthesis is the git branch we are working on</em>:</p>
 <ul class="simple">
-<li>(<strong>master</strong>) Create the post in rst or md (rst and md are abbreviations for resTructuredText and markdown)</li>
-<li>(<strong>master</strong>) Generate the HTML</li>
-<li>(<strong>master</strong>) Check the post in a local server</li>
-<li>(<strong>master</strong>) We could delete the output but dones't matter if we don't because git will ignore with our gitignore file</li>
-<li>(<strong>gh-pages</strong>) Merge master branch</li>
-<li>(<strong>gh-pages</strong>) Generate the HTML</li>
-<li>(<strong>gh-pages</strong>) push all the files (normally all the new HTML)</li>
-<li>(<strong>master</strong>) push all the files (normally only one post)</li>
+<li>(<tt class="docutils literal">master</tt>) Create the post in rst or md (rst and md are abbreviations for resTructuredText and markdown)</li>
+<li>(<tt class="docutils literal">master</tt>) Generate the HTML</li>
+<li>(<tt class="docutils literal">master</tt>) Check the post in a local server</li>
+<li>(<tt class="docutils literal">master</tt>) We could delete the output but dones't matter if we don't because git will ignore with our gitignore file</li>
+<li>(<tt class="docutils literal"><span class="pre">gh-pages</span></tt>) Merge master branch</li>
+<li>(<tt class="docutils literal"><span class="pre">gh-pages</span></tt>) Generate the HTML</li>
+<li>(<tt class="docutils literal"><span class="pre">gh-pages</span></tt>) push all the files (normally all the new HTML)</li>
+<li>(<tt class="docutils literal">master</tt>) push all the files (normally only one post)</li>
 </ul>
 <p>The first thing is to create the git repository. So we clone the repo from the
 first step and enter in the directory:</p>
@@ -197,7 +197,7 @@ $ cd ./blog
 local_settings.py
 output
 </pre>
-<p>If you don't have, create in the root folder a file named .gitignore file. This
+<p>If you don't have, create in the root folder a file named <tt class="docutils literal">.gitignore</tt> file. This
 file will ignore all the files that match with the names of the file:</p>
 <pre class="literal-block">
 #Custom
@@ -241,12 +241,12 @@ nosetests.xml
 .project
 .pydevproject
 </pre>
-<p>Now we will create a pelican settings file called <strong>local_settings.py</strong>, this file
+<p>Now we will create a pelican settings file called <tt class="docutils literal">local_settings.py</tt>, this file
 will not be commited to the git repo, maybe has personal data. But we will upload
-a blank template anmed <strong>settings.py</strong>, so we create also this one, that has the
-same variables as <strong>local_settings.py</strong> but without
+a blank template named <tt class="docutils literal">settings.py</tt>, so we create also this one, that has the
+same variables as <tt class="docutils literal">local_settings.py</tt> but without
 the vars data. Edit the data you need
-(You can store the <strong>local_settings.py</strong> data in a private gist manually):</p>
+(You can store the <tt class="docutils literal">local_settings.py</tt> data in a private gist manually):</p>
 <div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
 
 <span class="n">AUTHOR</span> <span class="o">=</span> <span class="s">&quot;Chuck norris&quot;</span>
@@ -281,25 +281,25 @@ the vars data. Edit the data you need
 <span class="c"># static paths will be copied under the same name</span>
 <span class="n">STATIC_PATHS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;src/images&quot;</span><span class="p">,</span> <span class="p">]</span>
 </pre></div>
-<p>Now that we have our <strong>settings.py</strong> and <strong>local_settings.py</strong>.</p>
+<p>Now that we have our <tt class="docutils literal">settings.py</tt> and <tt class="docutils literal">local_settings.py</tt>.</p>
 <p>To generate the static html we use:</p>
 <pre class="literal-block">
 $ pelican -s ./local_settings.py
 </pre>
 <p>This will take all the settings and apply, but if we want to override some settings
-we could do. For example to specify the ouput we use <strong>-o</strong>:</p>
+we could do. For example to specify the ouput we use <tt class="docutils literal"><span class="pre">-o</span></tt>:</p>
 <pre class="literal-block">
 $ pelican -s ./local_settings.py -o /tmp/myBlog
 </pre>
 </div>
 <div class="section" id="creating-a-post">
 <h2>Creating a post</h2>
-<p>To be tidy we create a directory structure of <strong>/posts/{year}/{month}/</strong> where
+<p>To be tidy we create a directory structure of <tt class="docutils literal"><span class="pre">/posts/{year}/{month}/</span></tt> where
 the posts will be written:</p>
 <pre class="literal-block">
 $ mkdir -p ./posts/2012/10
 </pre>
-<p>Create a post named <strong>hello-world.rst</strong> or <strong>hello-world.md</strong>, that depends on your
+<p>Create a post named <tt class="docutils literal"><span class="pre">hello-world.rst</span></tt> or <tt class="docutils literal"><span class="pre">hello-world.md</span></tt>, that depends on your
 preferences of syntax. Add This example and edit as you want, title, user...
 (is in rst):</p>
 <pre class="literal-block">
@@ -320,19 +320,19 @@ This is our first post!! A classic
 See you soon ;)
 </pre>
 <p>Save and generate the static blog. If all goes fine. Then we have a new
-directory named <strong>output</strong>, our blog is there, so, to test it , insert there and
+directory named <tt class="docutils literal">output</tt>, our blog is there, so, to test it , insert there and
 run a simple server:</p>
 <pre class="literal-block">
 $ cd ./output
 $ python -m SimpleHTTPServer
 </pre>
-<p>Point your browser to <strong>127.0.0.1:8000</strong> and you will see the blog. If all is
+<p>Point your browser to <tt class="docutils literal">127.0.0.1:8000</tt> and you will see the blog. If all is
 correct then is time to deploy.</p>
 </div>
 <div class="section" id="deploying-the-blog">
 <h2>Deploying the blog</h2>
-<p>In a previous section I explained the process to deploy, if you have understand
-(you should ¬¬) this will be easy. We start the process in the <strong>master</strong> branch</p>
+<p>In a previous section I explained the process to deploy, if you have understood
+(you should ¬¬) this will be easy. We start the process in the <tt class="docutils literal">master</tt> branch</p>
 <p>Commit all changes in the master branch (the new post), this may vary depends
 on the files you haven't commited yet (gitignore, settings...):</p>
 <pre class="literal-block">
@@ -343,17 +343,17 @@ $ git commit -m &quot;First post: Hello world&quot;
 <pre class="literal-block">
 $ git push origin master
 </pre>
-<p>If we havent the <strong>gh-pages</strong> branch we create:</p>
+<p>If we havent the <tt class="docutils literal"><span class="pre">gh-pages</span></tt> branch we create:</p>
 <pre class="literal-block">
 $ git branch gh-pages
 </pre>
-<p>Change to <strong>gh-pages</strong> and merge the master branch:</p>
+<p>Change to <tt class="docutils literal"><span class="pre">gh-pages</span></tt> and merge the master branch:</p>
 <pre class="literal-block">
 $ git checkout gh-pages
 $ git merge master
 </pre>
 <p>Now generate the HTML. But wait! github doesn't know that our webpage is in
-<strong>output</strong> dir, so we need to put our generated HTML in the root of the
+<tt class="docutils literal">output</tt> dir, so we need to put our generated HTML in the root of the
 project, to do that we replace the settings outputdir in the command:</p>
 <pre class="literal-block">
 $ pelican -s ./local_settings.py -o ./
@@ -368,7 +368,7 @@ $ git push origin gh-pages
 <pre class="literal-block">
 $ git checkout master
 </pre>
-<p>point your browser to <strong>you.github.com/blog</strong> , awesome!!</p>
+<p>point your browser to <tt class="docutils literal">you.github.com/blog</tt> , awesome!!</p>
 <p>This could be tedious, so we can automate the process with <a class="reference external" href="http://fabfile.org">fabric</a>. I have
 created a fabfile that automates it. See in <a class="reference internal" href="#optional">optional</a>. section</p>
 </div>
@@ -377,12 +377,12 @@ created a fabfile that automates it. See in <a class="reference internal" href="
 <div class="section" id="custom-domain">
 <h3>Custom domain</h3>
 <p>If you want a custom domain you have to create in the gh-pages branch a file
-called <strong>CNAME</strong> and put there your domain. For example:</p>
+called <tt class="docutils literal">CNAME</tt> and put there your domain. For example:</p>
 <pre class="literal-block">
 blog.chucknorris.com
 </pre>
-<p>In your domain provider point the domain to <strong>204.232.175.78</strong> with a record
-type of <strong>A</strong></p>
+<p>In your domain provider point the domain to <tt class="docutils literal">204.232.175.78</tt> with a record
+type of <tt class="docutils literal">A</tt></p>
 </div>
 <div class="section" id="automation">
 <h3>Automation</h3>
@@ -393,14 +393,12 @@ root path of the blog in the master branch. You need fabric installe to use it:<
 $ pip install fabric
 </pre>
 <p>Now you can use like this:</p>
-<blockquote>
 <ul class="simple">
-<li>fab generate: generates the html for developing (while writing)</li>
-<li>fab serve: Serves the blog in local</li>
-<li>fab publish: Does all the process of change, commit and publish gh-pages branch, needs to be in master branch while executing the command</li>
+<li><tt class="docutils literal">fab generate</tt>: generates the html for developing (while writing)</li>
+<li><tt class="docutils literal">fab serve</tt>: Serves the blog in local</li>
+<li><tt class="docutils literal">fab publish</tt>: Does all the process of change, commit and publish gh-pages branch, needs to be in master branch while executing the command</li>
 </ul>
-</blockquote>
-<p>The <strong>fabfile.py</strong>:</p>
+<p>The <tt class="docutils literal">fabfile.py</tt>:</p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
@@ -527,7 +525,7 @@ $ pip install fabric
             <hr/>
             <footer id="contentinfo" class="footer">
                 <div>
-                    <a href="http://xlarrakoetxea.org">Xabier Larrakoetxea</a> (2012)
+                    <a href="../../../../.">Xabier Larrakoetxea</a> (2012)
                 </div>
                 <div>
                     This work is licensed under <a rel="license" href="http://opensource.org/licenses/bsd-3-clause">3 clause BSD</a>. Source code available on <a rel="source code" href="https://github.com/slok/blog">Github</a>
@@ -535,7 +533,7 @@ $ pip install fabric
                 <div>
                     powered by <a href="http://getpelican.com/">Pelican</a>
                     and <a href="http://python.org">Python</a>. 
-                    <a href="http://github.com/slok/iris">Theme</a> by Xabier Larrakoetxea based on <a href="http://flask.pocoo.org/">Flask</a> theme
+                    <a href="http://github.com/slok/iris">Theme</a> by <a href="http://xlarrakoetxea.org">Xabier Larrakoetxea</a> based on <a href="http://flask.pocoo.org/">Flask</a> theme
                 </div>
                 <div>
                     Social icons (font awesome) by <a href="http://fortawesome.github.com/Font-Awesome/"> fort awesome<a>.

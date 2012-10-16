@@ -11,14 +11,14 @@ Let's start!&lt;/p&gt;
 &lt;h2&gt;Requirements&lt;/h2&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;Github account&lt;/li&gt;
-&lt;li&gt;Python (&amp;gt;= 2.7)&lt;/li&gt;
+&lt;li&gt;Python (&amp;gt;= 2.6)&lt;/li&gt;
 &lt;li&gt;Git&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class="section" id="github-and-gh-pages"&gt;
 &lt;h2&gt;Github and GH-pages&lt;/h2&gt;
-&lt;p&gt;We need to make a respository. For example &lt;strong&gt;blog&lt;/strong&gt;, so our blog url will be
-&lt;strong&gt;user.github.com/blog&lt;/strong&gt; If you want to set a custom domain see the &lt;a class="reference internal" href="#optional"&gt;optional&lt;/a&gt;
+&lt;p&gt;We need to make a respository. For example &lt;tt class="docutils literal"&gt;blog&lt;/tt&gt;, so our blog url will be
+&lt;tt class="docutils literal"&gt;user.github.com/blog&lt;/tt&gt; If you want to set a custom domain see the &lt;a class="reference internal" href="#optional"&gt;optional&lt;/a&gt;
 section.&lt;/p&gt;
 &lt;p&gt;The site content to render (HTML, CSS...) needs to be in the gh-pages branch.
 This leads to a personal organization of the blog:&lt;/p&gt;
@@ -26,10 +26,10 @@ This leads to a personal organization of the blog:&lt;/p&gt;
 &lt;div class="section" id="organization"&gt;
 &lt;h2&gt;Organization&lt;/h2&gt;
 &lt;p&gt;I like to be tidy so the HTML and that stuff will be only in the place that is
-needed: &lt;cite&gt;gh-pages&lt;/cite&gt; branch, in the master branch I will have all my other things:
+needed: &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;gh-pages&lt;/span&gt;&lt;/tt&gt; branch, in the master branch I will have all my other things:
 settings, fabfile, requirements...
 About this I will talk later.&lt;/p&gt;
-&lt;p&gt;Right now my &lt;strong&gt;master&lt;/strong&gt; branch is this:&lt;/p&gt;
+&lt;p&gt;Right now my &lt;tt class="docutils literal"&gt;master&lt;/tt&gt; branch is this:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 .
 |-- README.rst
@@ -64,8 +64,8 @@ $ pip install virtualenv
 &lt;pre class="literal-block"&gt;
 $ pip install virtualenvwrapper
 &lt;/pre&gt;
-&lt;p&gt;We need to configure virtualenwrapper with some environment vars, so for example
-in your user bashrc (&lt;strong&gt;~/.bashrc&lt;/strong&gt;) add this (maybe &lt;strong&gt;virtualenwrapper.sh&lt;/strong&gt; is in other
+&lt;p&gt;We need to configure virtualenvwrapper with some environment vars, so for example
+in your user bashrc (&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;~/.bashrc&lt;/span&gt;&lt;/tt&gt;) add this (maybe &lt;tt class="docutils literal"&gt;virtualenvwrapper.sh&lt;/tt&gt; is in other
 location, change if necessary):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#Virtualenvwrapper&lt;/span&gt;
 &lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;WORKON_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.virtualenvs
@@ -110,14 +110,14 @@ the blog. But before start messing up with files. I will explain the steps to
 publish a post. Is very important to understand this flow.
 &lt;em&gt;In parenthesis is the git branch we are working on&lt;/em&gt;:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;(&lt;strong&gt;master&lt;/strong&gt;) Create the post in rst or md (rst and md are abbreviations for resTructuredText and markdown)&lt;/li&gt;
-&lt;li&gt;(&lt;strong&gt;master&lt;/strong&gt;) Generate the HTML&lt;/li&gt;
-&lt;li&gt;(&lt;strong&gt;master&lt;/strong&gt;) Check the post in a local server&lt;/li&gt;
-&lt;li&gt;(&lt;strong&gt;master&lt;/strong&gt;) We could delete the output but dones't matter if we don't because git will ignore with our gitignore file&lt;/li&gt;
-&lt;li&gt;(&lt;strong&gt;gh-pages&lt;/strong&gt;) Merge master branch&lt;/li&gt;
-&lt;li&gt;(&lt;strong&gt;gh-pages&lt;/strong&gt;) Generate the HTML&lt;/li&gt;
-&lt;li&gt;(&lt;strong&gt;gh-pages&lt;/strong&gt;) push all the files (normally all the new HTML)&lt;/li&gt;
-&lt;li&gt;(&lt;strong&gt;master&lt;/strong&gt;) push all the files (normally only one post)&lt;/li&gt;
+&lt;li&gt;(&lt;tt class="docutils literal"&gt;master&lt;/tt&gt;) Create the post in rst or md (rst and md are abbreviations for resTructuredText and markdown)&lt;/li&gt;
+&lt;li&gt;(&lt;tt class="docutils literal"&gt;master&lt;/tt&gt;) Generate the HTML&lt;/li&gt;
+&lt;li&gt;(&lt;tt class="docutils literal"&gt;master&lt;/tt&gt;) Check the post in a local server&lt;/li&gt;
+&lt;li&gt;(&lt;tt class="docutils literal"&gt;master&lt;/tt&gt;) We could delete the output but dones't matter if we don't because git will ignore with our gitignore file&lt;/li&gt;
+&lt;li&gt;(&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;gh-pages&lt;/span&gt;&lt;/tt&gt;) Merge master branch&lt;/li&gt;
+&lt;li&gt;(&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;gh-pages&lt;/span&gt;&lt;/tt&gt;) Generate the HTML&lt;/li&gt;
+&lt;li&gt;(&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;gh-pages&lt;/span&gt;&lt;/tt&gt;) push all the files (normally all the new HTML)&lt;/li&gt;
+&lt;li&gt;(&lt;tt class="docutils literal"&gt;master&lt;/tt&gt;) push all the files (normally only one post)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The first thing is to create the git repository. So we clone the repo from the
 first step and enter in the directory:&lt;/p&gt;
@@ -131,7 +131,7 @@ $ cd ./blog
 local_settings.py
 output
 &lt;/pre&gt;
-&lt;p&gt;If you don't have, create in the root folder a file named .gitignore file. This
+&lt;p&gt;If you don't have, create in the root folder a file named &lt;tt class="docutils literal"&gt;.gitignore&lt;/tt&gt; file. This
 file will ignore all the files that match with the names of the file:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 #Custom
@@ -175,12 +175,12 @@ nosetests.xml
 .project
 .pydevproject
 &lt;/pre&gt;
-&lt;p&gt;Now we will create a pelican settings file called &lt;strong&gt;local_settings.py&lt;/strong&gt;, this file
+&lt;p&gt;Now we will create a pelican settings file called &lt;tt class="docutils literal"&gt;local_settings.py&lt;/tt&gt;, this file
 will not be commited to the git repo, maybe has personal data. But we will upload
-a blank template anmed &lt;strong&gt;settings.py&lt;/strong&gt;, so we create also this one, that has the
-same variables as &lt;strong&gt;local_settings.py&lt;/strong&gt; but without
+a blank template named &lt;tt class="docutils literal"&gt;settings.py&lt;/tt&gt;, so we create also this one, that has the
+same variables as &lt;tt class="docutils literal"&gt;local_settings.py&lt;/tt&gt; but without
 the vars data. Edit the data you need
-(You can store the &lt;strong&gt;local_settings.py&lt;/strong&gt; data in a private gist manually):&lt;/p&gt;
+(You can store the &lt;tt class="docutils literal"&gt;local_settings.py&lt;/tt&gt; data in a private gist manually):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
 
 &lt;span class="n"&gt;AUTHOR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Chuck norris&amp;quot;&lt;/span&gt;
@@ -215,25 +215,25 @@ the vars data. Edit the data you need
 &lt;span class="c"&gt;# static paths will be copied under the same name&lt;/span&gt;
 &lt;span class="n"&gt;STATIC_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;src/images&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now that we have our &lt;strong&gt;settings.py&lt;/strong&gt; and &lt;strong&gt;local_settings.py&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Now that we have our &lt;tt class="docutils literal"&gt;settings.py&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;local_settings.py&lt;/tt&gt;.&lt;/p&gt;
 &lt;p&gt;To generate the static html we use:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 $ pelican -s ./local_settings.py
 &lt;/pre&gt;
 &lt;p&gt;This will take all the settings and apply, but if we want to override some settings
-we could do. For example to specify the ouput we use &lt;strong&gt;-o&lt;/strong&gt;:&lt;/p&gt;
+we could do. For example to specify the ouput we use &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-o&lt;/span&gt;&lt;/tt&gt;:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 $ pelican -s ./local_settings.py -o /tmp/myBlog
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="section" id="creating-a-post"&gt;
 &lt;h2&gt;Creating a post&lt;/h2&gt;
-&lt;p&gt;To be tidy we create a directory structure of &lt;strong&gt;/posts/{year}/{month}/&lt;/strong&gt; where
+&lt;p&gt;To be tidy we create a directory structure of &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;/posts/{year}/{month}/&lt;/span&gt;&lt;/tt&gt; where
 the posts will be written:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 $ mkdir -p ./posts/2012/10
 &lt;/pre&gt;
-&lt;p&gt;Create a post named &lt;strong&gt;hello-world.rst&lt;/strong&gt; or &lt;strong&gt;hello-world.md&lt;/strong&gt;, that depends on your
+&lt;p&gt;Create a post named &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;hello-world.rst&lt;/span&gt;&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;hello-world.md&lt;/span&gt;&lt;/tt&gt;, that depends on your
 preferences of syntax. Add This example and edit as you want, title, user...
 (is in rst):&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
@@ -254,19 +254,19 @@ This is our first post!! A classic
 See you soon ;)
 &lt;/pre&gt;
 &lt;p&gt;Save and generate the static blog. If all goes fine. Then we have a new
-directory named &lt;strong&gt;output&lt;/strong&gt;, our blog is there, so, to test it , insert there and
+directory named &lt;tt class="docutils literal"&gt;output&lt;/tt&gt;, our blog is there, so, to test it , insert there and
 run a simple server:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 $ cd ./output
 $ python -m SimpleHTTPServer
 &lt;/pre&gt;
-&lt;p&gt;Point your browser to &lt;strong&gt;127.0.0.1:8000&lt;/strong&gt; and you will see the blog. If all is
+&lt;p&gt;Point your browser to &lt;tt class="docutils literal"&gt;127.0.0.1:8000&lt;/tt&gt; and you will see the blog. If all is
 correct then is time to deploy.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="deploying-the-blog"&gt;
 &lt;h2&gt;Deploying the blog&lt;/h2&gt;
-&lt;p&gt;In a previous section I explained the process to deploy, if you have understand
-(you should ¬¬) this will be easy. We start the process in the &lt;strong&gt;master&lt;/strong&gt; branch&lt;/p&gt;
+&lt;p&gt;In a previous section I explained the process to deploy, if you have understood
+(you should ¬¬) this will be easy. We start the process in the &lt;tt class="docutils literal"&gt;master&lt;/tt&gt; branch&lt;/p&gt;
 &lt;p&gt;Commit all changes in the master branch (the new post), this may vary depends
 on the files you haven't commited yet (gitignore, settings...):&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
@@ -277,17 +277,17 @@ $ git commit -m &amp;quot;First post: Hello world&amp;quot;
 &lt;pre class="literal-block"&gt;
 $ git push origin master
 &lt;/pre&gt;
-&lt;p&gt;If we havent the &lt;strong&gt;gh-pages&lt;/strong&gt; branch we create:&lt;/p&gt;
+&lt;p&gt;If we havent the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;gh-pages&lt;/span&gt;&lt;/tt&gt; branch we create:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 $ git branch gh-pages
 &lt;/pre&gt;
-&lt;p&gt;Change to &lt;strong&gt;gh-pages&lt;/strong&gt; and merge the master branch:&lt;/p&gt;
+&lt;p&gt;Change to &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;gh-pages&lt;/span&gt;&lt;/tt&gt; and merge the master branch:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 $ git checkout gh-pages
 $ git merge master
 &lt;/pre&gt;
 &lt;p&gt;Now generate the HTML. But wait! github doesn't know that our webpage is in
-&lt;strong&gt;output&lt;/strong&gt; dir, so we need to put our generated HTML in the root of the
+&lt;tt class="docutils literal"&gt;output&lt;/tt&gt; dir, so we need to put our generated HTML in the root of the
 project, to do that we replace the settings outputdir in the command:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 $ pelican -s ./local_settings.py -o ./
@@ -302,7 +302,7 @@ $ git push origin gh-pages
 &lt;pre class="literal-block"&gt;
 $ git checkout master
 &lt;/pre&gt;
-&lt;p&gt;point your browser to &lt;strong&gt;you.github.com/blog&lt;/strong&gt; , awesome!!&lt;/p&gt;
+&lt;p&gt;point your browser to &lt;tt class="docutils literal"&gt;you.github.com/blog&lt;/tt&gt; , awesome!!&lt;/p&gt;
 &lt;p&gt;This could be tedious, so we can automate the process with &lt;a class="reference external" href="http://fabfile.org"&gt;fabric&lt;/a&gt;. I have
 created a fabfile that automates it. See in &lt;a class="reference internal" href="#optional"&gt;optional&lt;/a&gt;. section&lt;/p&gt;
 &lt;/div&gt;
@@ -311,12 +311,12 @@ created a fabfile that automates it. See in &lt;a class="reference internal" hre
 &lt;div class="section" id="custom-domain"&gt;
 &lt;h3&gt;Custom domain&lt;/h3&gt;
 &lt;p&gt;If you want a custom domain you have to create in the gh-pages branch a file
-called &lt;strong&gt;CNAME&lt;/strong&gt; and put there your domain. For example:&lt;/p&gt;
+called &lt;tt class="docutils literal"&gt;CNAME&lt;/tt&gt; and put there your domain. For example:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 blog.chucknorris.com
 &lt;/pre&gt;
-&lt;p&gt;In your domain provider point the domain to &lt;strong&gt;204.232.175.78&lt;/strong&gt; with a record
-type of &lt;strong&gt;A&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In your domain provider point the domain to &lt;tt class="docutils literal"&gt;204.232.175.78&lt;/tt&gt; with a record
+type of &lt;tt class="docutils literal"&gt;A&lt;/tt&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="automation"&gt;
 &lt;h3&gt;Automation&lt;/h3&gt;
@@ -327,14 +327,12 @@ root path of the blog in the master branch. You need fabric installe to use it:&
 $ pip install fabric
 &lt;/pre&gt;
 &lt;p&gt;Now you can use like this:&lt;/p&gt;
-&lt;blockquote&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;fab generate: generates the html for developing (while writing)&lt;/li&gt;
-&lt;li&gt;fab serve: Serves the blog in local&lt;/li&gt;
-&lt;li&gt;fab publish: Does all the process of change, commit and publish gh-pages branch, needs to be in master branch while executing the command&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;fab generate&lt;/tt&gt;: generates the html for developing (while writing)&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;fab serve&lt;/tt&gt;: Serves the blog in local&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;fab publish&lt;/tt&gt;: Does all the process of change, commit and publish gh-pages branch, needs to be in master branch while executing the command&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The &lt;strong&gt;fabfile.py&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;The &lt;tt class="docutils literal"&gt;fabfile.py&lt;/tt&gt;:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
 
@@ -441,7 +439,7 @@ $ pip install fabric
 &lt;p&gt;I hope you enyoyed and liked doing an awesome static blog&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Xabier Larrakoetxea</dc:creator><pubDate>Mon, 15 Oct 2012 18:00:00 +0200</pubDate><guid>tag:blog.xlarrakoetxea.org,2012-10-15:posts/2012/10/creating-a-blog-with-pelican/</guid><category>howto</category><category>static</category><category>blog</category><category>pelican</category></item><item><title>Hello world!</title><link>http://blog.xlarrakoetxea.org/posts/2012/10/hello-world/</link><description>&lt;p&gt;This is the first post of many. I will start this blog with a classic:&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Xabier Larrakoetxea</dc:creator><pubDate>Mon, 15 Oct 2012 18:00:00 +0200</pubDate><guid>tag:blog.xlarrakoetxea.org,2012-10-15:posts/2012/10/creating-a-blog-with-pelican/</guid><category>howto</category><category>static</category><category>blog</category><category>pelican</category><category>python</category></item><item><title>Hello world!</title><link>http://blog.xlarrakoetxea.org/posts/2012/10/hello-world/</link><description>&lt;p&gt;This is the first post of many. I will start this blog with a classic:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;say_hello&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hello world!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
