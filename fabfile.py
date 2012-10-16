@@ -69,7 +69,7 @@ def git_push(remote, branch):
 
 def git_commit_all(msg):
     """Commits all the changes"""
-    local("git add .")
+    local("git add -A")
     local("git commit -m \"{0}\"".format(msg))
 
 
