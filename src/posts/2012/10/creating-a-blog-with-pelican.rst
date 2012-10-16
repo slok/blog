@@ -369,9 +369,9 @@ root path of the blog in the master branch. You need fabric installe to use it::
 
 Now you can use like this:
     
-    - fab generate: generates the html for developing (while writing)
-    - fab serve: Serves the blog in local
-    - fab publish: Does all the process of change, commit and publish gh-pages branch, needs to be in master branch while executing the command
+- ``fab generate``: generates the html for developing (while writing)
+- ``fab serve``: Serves the blog in local
+- ``fab publish``: Does all the process of change, commit and publish gh-pages branch, needs to be in master branch while executing the command
 
 The ``fabfile.py``:
 
