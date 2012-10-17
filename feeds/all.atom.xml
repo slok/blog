@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>slok's Blog</title><link href="http://blog.xlarrakoetxea.org/" rel="alternate"></link><link href="http://blog.xlarrakoetxea.org/feeds/all.atom.xml" rel="self"></link><id>http://blog.xlarrakoetxea.org/</id><updated>2012-10-15T18:00:00+02:00</updated><entry><title>Creating a blog with Pelican</title><link href="http://blog.xlarrakoetxea.org/posts/2012/10/creating-a-blog-with-pelican/" rel="alternate"></link><updated>2012-10-15T18:00:00+02:00</updated><author><name>Xabier Larrakoetxea</name></author><id>tag:blog.xlarrakoetxea.org,2012-10-15:posts/2012/10/creating-a-blog-with-pelican/</id><summary type="html">&lt;p&gt;Like I said in my &lt;a class="reference external" href="posts/2012/10/hello-world"&gt;first post&lt;/a&gt;, this blog is an static blog made with &lt;a class="reference external" href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>slok's Blog</title><link href="http://blog.xlarrakoetxea.org/" rel="alternate"></link><link href="http://blog.xlarrakoetxea.org/feeds/all.atom.xml" rel="self"></link><id>http://blog.xlarrakoetxea.org/</id><updated>2012-10-17T10:41:00+02:00</updated><entry><title>New pelican theme</title><link href="http://blog.xlarrakoetxea.org/posts/2012/10/new-pelican-theme/" rel="alternate"></link><updated>2012-10-17T10:41:00+02:00</updated><author><name>Xabier Larrakoetxea</name></author><id>tag:blog.xlarrakoetxea.org,2012-10-17:posts/2012/10/new-pelican-theme/</id><summary type="html">&lt;p&gt;On monday I put this blog up and running, but I didn't liked any of the themes
+, so... yesterday when I woke up (Currently I'm searching for
+a Python developer job) I thought that I had to create a new theme, this theme
+in my mind was very readable, clear and simple, and suddenly the &lt;a class="reference external" href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt;
+documentation came to my mind. So I picked up the CSS and start adding and
+deleting things.&lt;/p&gt;
+&lt;p&gt;The theme is the one that is currently styling this blog. I added some useful
+features like inline code representation for &lt;tt class="docutils literal"&gt;tt&lt;/tt&gt; (yes that representation)
+in reStructuredText. I also added &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;align-center&lt;/span&gt;&lt;/tt&gt; class for the images.&lt;/p&gt;
+&lt;p&gt;The result is this theme named Iris (Iris is my cat). The source code is in
+&lt;a class="reference external" href="https://github.com/slok/iris"&gt;github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;To install there are two ways:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;You can clone &lt;a class="reference external" href="https://github.com/slok/iris"&gt;this&lt;/a&gt; theme in your pelican themes folder (is in the pelican installation in &lt;tt class="docutils literal"&gt;themes&lt;/tt&gt; directory) next add &lt;tt class="docutils literal"&gt;THEME = &amp;quot;iris&amp;quot;&lt;/tt&gt; to your pelican settings&lt;/li&gt;
+&lt;li&gt;Download the theme where you want and point directly to that path, for example &lt;tt class="docutils literal"&gt;THEME = &amp;quot;/my/path/to/theme/iris&amp;quot;&lt;/tt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I hope you liked.&lt;/p&gt;
+&lt;p&gt;Extra: Iris (the cat) photo:&lt;/p&gt;
+&lt;img alt="Iris the cat" class="align-center" src="images/iris.jpg" style="width: 400px;" /&gt;
+</summary><category term="python"></category><category term="theme"></category><category term="blog"></category><category term="pelican"></category><category term="iris"></category></entry><entry><title>Creating a blog with Pelican</title><link href="http://blog.xlarrakoetxea.org/posts/2012/10/creating-a-blog-with-pelican/" rel="alternate"></link><updated>2012-10-15T18:00:00+02:00</updated><author><name>Xabier Larrakoetxea</name></author><id>tag:blog.xlarrakoetxea.org,2012-10-15:posts/2012/10/creating-a-blog-with-pelican/</id><summary type="html">&lt;p&gt;Like I said in my &lt;a class="reference external" href="posts/2012/10/hello-world"&gt;first post&lt;/a&gt;, this blog is an static blog made with &lt;a class="reference external" href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;
 and &lt;a class="reference external" href="https://help.github.com/categories/20/articles/"&gt;github pages&lt;/a&gt;. This is awesome, for various reasons, it's simple, tidy, easy, scalable and the best of all, is &lt;em&gt;funny&lt;/em&gt;. Also Pelican uses &lt;a class="reference external" href="http://pygments.org/"&gt;Pygments&lt;/a&gt;
 for the syntax highlighting and as you know this will be a very techie blog,
 so I need the perfect tool for this, and yes, it's Pygments.&lt;/p&gt;
@@ -181,40 +200,40 @@ a blank template named &lt;tt class="docutils literal"&gt;settings.py&lt;/tt&gt;
 same variables as &lt;tt class="docutils literal"&gt;local_settings.py&lt;/tt&gt; but without
 the vars data. Edit the data you need
 (You can store the &lt;tt class="docutils literal"&gt;local_settings.py&lt;/tt&gt; data in a private gist manually):&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
-
-&lt;span class="n"&gt;AUTHOR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Chuck norris&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;SITENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;chuck&amp;#39;s Blog&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;SITEURL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://blog.chucknorris.org&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;TIMEZONE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Europe/Madrid&amp;quot;&lt;/span&gt;
-
-&lt;span class="n"&gt;GITHUB_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://github.com/chucknorris/&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;DISQUS_SITENAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;xxxxxxxxxxxxxxxxxxxxxx&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;PDF_GENERATOR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
-&lt;span class="n"&gt;REVERSE_CATEGORY_ORDER&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
-&lt;span class="n"&gt;LOCALE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;en_US&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;DEFAULT_PAGINATION&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
-
-&lt;span class="c"&gt;#THEME = &amp;quot;mnmlist&amp;quot;&lt;/span&gt;
-
-&lt;span class="n"&gt;FEED_RSS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;feeds/all.rss.xml&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;CATEGORY_FEED_RSS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;feeds/&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;.rss.xml&amp;quot;&lt;/span&gt;
-
-&lt;span class="n"&gt;LINKS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Stalone&amp;#39;s blog&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://stalone.com&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),)&lt;/span&gt;
-
-&lt;span class="n"&gt;SOCIAL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;twitter&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://twitter.com/chucknorris&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;linkedin&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://www.linkedin.com/in/chucknorris&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
-          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;github&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;http://github.com/chucknorris&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;),)&lt;/span&gt;
-
-&lt;span class="n"&gt;OUTPUT_PATH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;output&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;PATH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;src/posts&amp;quot;&lt;/span&gt;
-
-&lt;span class="n"&gt;ARTICLE_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;posts/{date:%Y}/{date:%m}/{slug}/&amp;quot;&lt;/span&gt;
-&lt;span class="n"&gt;ARTICLE_SAVE_AS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;posts/{date:%Y}/{date:%m}/{slug}/index.html&amp;quot;&lt;/span&gt;
-
-&lt;span class="c"&gt;# static paths will be copied under the same name&lt;/span&gt;
-&lt;span class="n"&gt;STATIC_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;src/images&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;# -&lt;em&gt;- coding: utf-8 -&lt;/em&gt;-&lt;/p&gt;
+&lt;p&gt;AUTHOR = 'xxxxxxxx xxxxxxxxxxxxx'
+SITENAME = &amp;quot;xxxxxxxxxxxx&amp;quot;
+SITEURL = '&lt;a class="reference external" href="http://xxxxxxxxxxxxxxxxx"&gt;http://xxxxxxxxxxxxxxxxx&lt;/a&gt;'
+TIMEZONE = &amp;quot;Europe/Madrid&amp;quot;&lt;/p&gt;
+&lt;p&gt;GITHUB_URL = '&lt;a class="reference external" href="http://github.com/XXXXX"&gt;http://github.com/XXXXX&lt;/a&gt;'
+DISQUS_SITENAME = &amp;quot;XXXXXXXXXX&amp;quot;
+EMAIL = &amp;quot;&lt;a class="reference external" href="mailto:XXXXXXXXXXXXXX&amp;#64;gmail.com"&gt;XXXXXXXXXXXXXX&amp;#64;gmail.com&lt;/a&gt;&amp;quot;
+PDF_GENERATOR = False
+REVERSE_CATEGORY_ORDER = True
+LOCALE = 'en_US'
+DEFAULT_PAGINATION = 5&lt;/p&gt;
+&lt;p&gt;THEME = &amp;quot;iris&amp;quot;&lt;/p&gt;
+&lt;p&gt;FEED_RSS = 'feeds/all.rss.xml'
+CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'&lt;/p&gt;
+&lt;p&gt;LINKS = (('XXXXX XXXX', '&lt;a class="reference external" href="http://YYYYYYYYYYY.ZZZ"&gt;http://YYYYYYYYYYY.ZZZ&lt;/a&gt;'),)&lt;/p&gt;
+&lt;dl class="docutils"&gt;
+&lt;dt&gt;SOCIAL = (('twitter', '&lt;a class="reference external" href="http://twitter.com/XXXXXX"&gt;http://twitter.com/XXXXXX&lt;/a&gt;'),&lt;/dt&gt;
+&lt;dd&gt;('linkedin', '&lt;a class="reference external" href="http://www.linkedin.com/in/XXXXXXX"&gt;http://www.linkedin.com/in/XXXXXXX&lt;/a&gt;'),
+('github', GITHUB_URL),)&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;OUTPUT_PATH = 'output'
+PATH = 'src'&lt;/p&gt;
+&lt;p&gt;ARTICLE_URL = &amp;quot;posts/{date:%Y}/{date:%m}/{slug}/&amp;quot;
+ARTICLE_SAVE_AS = &amp;quot;posts/{date:%Y}/{date:%m}/{slug}/index.html&amp;quot;&lt;/p&gt;
+&lt;p&gt;GOSQUARED_SITENAME = &amp;quot;XXX-YYYYYY-X&amp;quot;&lt;/p&gt;
+&lt;p&gt;# global metadata to all the contents
+#DEFAULT_METADATA = (('yeah', 'it is'),)&lt;/p&gt;
+&lt;p&gt;# static paths will be copied under the same name
+STATIC_PATHS = [&amp;quot;images&amp;quot;, ]&lt;/p&gt;
+&lt;p&gt;# A list of files to copy from the source to the destination
+#FILES_TO_COPY = (('extra/robots.txt', 'robots.txt'),)&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Now that we have our &lt;tt class="docutils literal"&gt;settings.py&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;local_settings.py&lt;/tt&gt;.&lt;/p&gt;
 &lt;p&gt;To generate the static html we use:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;

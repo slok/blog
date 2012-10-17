@@ -247,40 +247,40 @@ a blank template named <tt class="docutils literal">settings.py</tt>, so we crea
 same variables as <tt class="docutils literal">local_settings.py</tt> but without
 the vars data. Edit the data you need
 (You can store the <tt class="docutils literal">local_settings.py</tt> data in a private gist manually):</p>
-<div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
-
-<span class="n">AUTHOR</span> <span class="o">=</span> <span class="s">&quot;Chuck norris&quot;</span>
-<span class="n">SITENAME</span> <span class="o">=</span> <span class="s">&quot;chuck&#39;s Blog&quot;</span>
-<span class="n">SITEURL</span> <span class="o">=</span> <span class="s">&quot;http://blog.chucknorris.org&quot;</span>
-<span class="n">TIMEZONE</span> <span class="o">=</span> <span class="s">&quot;Europe/Madrid&quot;</span>
-
-<span class="n">GITHUB_URL</span> <span class="o">=</span> <span class="s">&quot;http://github.com/chucknorris/&quot;</span>
-<span class="n">DISQUS_SITENAME</span> <span class="o">=</span> <span class="s">&quot;xxxxxxxxxxxxxxxxxxxxxx&quot;</span>
-<span class="n">PDF_GENERATOR</span> <span class="o">=</span> <span class="bp">False</span>
-<span class="n">REVERSE_CATEGORY_ORDER</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="n">LOCALE</span> <span class="o">=</span> <span class="s">&quot;en_US&quot;</span>
-<span class="n">DEFAULT_PAGINATION</span> <span class="o">=</span> <span class="mi">4</span>
-
-<span class="c">#THEME = &quot;mnmlist&quot;</span>
-
-<span class="n">FEED_RSS</span> <span class="o">=</span> <span class="s">&quot;feeds/all.rss.xml&quot;</span>
-<span class="n">CATEGORY_FEED_RSS</span> <span class="o">=</span> <span class="s">&quot;feeds/</span><span class="si">%s</span><span class="s">.rss.xml&quot;</span>
-
-<span class="n">LINKS</span> <span class="o">=</span> <span class="p">((</span><span class="s">&quot;Stalone&#39;s blog&quot;</span><span class="p">,</span> <span class="s">&quot;http://stalone.com&quot;</span><span class="p">),)</span>
-
-<span class="n">SOCIAL</span> <span class="o">=</span> <span class="p">((</span><span class="s">&quot;twitter&quot;</span><span class="p">,</span> <span class="s">&quot;http://twitter.com/chucknorris&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="s">&quot;linkedin&quot;</span><span class="p">,</span> <span class="s">&quot;http://www.linkedin.com/in/chucknorris&quot;</span><span class="p">),</span>
-          <span class="p">(</span><span class="s">&quot;github&quot;</span><span class="p">,</span> <span class="s">&quot;http://github.com/chucknorris&quot;</span><span class="p">),)</span>
-
-<span class="n">OUTPUT_PATH</span> <span class="o">=</span> <span class="s">&quot;output&quot;</span>
-<span class="n">PATH</span> <span class="o">=</span> <span class="s">&quot;src/posts&quot;</span>
-
-<span class="n">ARTICLE_URL</span> <span class="o">=</span> <span class="s">&quot;posts/{date:%Y}/{date:%m}/{slug}/&quot;</span>
-<span class="n">ARTICLE_SAVE_AS</span> <span class="o">=</span> <span class="s">&quot;posts/{date:%Y}/{date:%m}/{slug}/index.html&quot;</span>
-
-<span class="c"># static paths will be copied under the same name</span>
-<span class="n">STATIC_PATHS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;src/images&quot;</span><span class="p">,</span> <span class="p">]</span>
-</pre></div>
+<blockquote>
+<p># -<em>- coding: utf-8 -</em>-</p>
+<p>AUTHOR = 'xxxxxxxx xxxxxxxxxxxxx'
+SITENAME = &quot;xxxxxxxxxxxx&quot;
+SITEURL = '<a class="reference external" href="http://xxxxxxxxxxxxxxxxx">http://xxxxxxxxxxxxxxxxx</a>'
+TIMEZONE = &quot;Europe/Madrid&quot;</p>
+<p>GITHUB_URL = '<a class="reference external" href="http://github.com/XXXXX">http://github.com/XXXXX</a>'
+DISQUS_SITENAME = &quot;XXXXXXXXXX&quot;
+EMAIL = &quot;<a class="reference external" href="mailto:XXXXXXXXXXXXXX&#64;gmail.com">XXXXXXXXXXXXXX&#64;gmail.com</a>&quot;
+PDF_GENERATOR = False
+REVERSE_CATEGORY_ORDER = True
+LOCALE = 'en_US'
+DEFAULT_PAGINATION = 5</p>
+<p>THEME = &quot;iris&quot;</p>
+<p>FEED_RSS = 'feeds/all.rss.xml'
+CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'</p>
+<p>LINKS = (('XXXXX XXXX', '<a class="reference external" href="http://YYYYYYYYYYY.ZZZ">http://YYYYYYYYYYY.ZZZ</a>'),)</p>
+<dl class="docutils">
+<dt>SOCIAL = (('twitter', '<a class="reference external" href="http://twitter.com/XXXXXX">http://twitter.com/XXXXXX</a>'),</dt>
+<dd>('linkedin', '<a class="reference external" href="http://www.linkedin.com/in/XXXXXXX">http://www.linkedin.com/in/XXXXXXX</a>'),
+('github', GITHUB_URL),)</dd>
+</dl>
+<p>OUTPUT_PATH = 'output'
+PATH = 'src'</p>
+<p>ARTICLE_URL = &quot;posts/{date:%Y}/{date:%m}/{slug}/&quot;
+ARTICLE_SAVE_AS = &quot;posts/{date:%Y}/{date:%m}/{slug}/index.html&quot;</p>
+<p>GOSQUARED_SITENAME = &quot;XXX-YYYYYY-X&quot;</p>
+<p># global metadata to all the contents
+#DEFAULT_METADATA = (('yeah', 'it is'),)</p>
+<p># static paths will be copied under the same name
+STATIC_PATHS = [&quot;images&quot;, ]</p>
+<p># A list of files to copy from the source to the destination
+#FILES_TO_COPY = (('extra/robots.txt', 'robots.txt'),)</p>
+</blockquote>
 <p>Now that we have our <tt class="docutils literal">settings.py</tt> and <tt class="docutils literal">local_settings.py</tt>.</p>
 <p>To generate the static html we use:</p>
 <pre class="literal-block">
@@ -545,7 +545,7 @@ $ pip install fabric
                     
                         <a href="http://www.linkedin.com/in/xlarrakoetxea"><i class="icon-linkedin"></i>  </a>
                     
-                        <a href="http://github.com/slok"><i class="icon-github"></i>  </a>
+                        <a href="http://github.com/slok/"><i class="icon-github"></i>  </a>
                     
                     
                         <a href="mailto:xlarrakoetxea@gmail.com"><i class="icon-envelope"></i> </a>
