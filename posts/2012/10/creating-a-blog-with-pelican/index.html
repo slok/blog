@@ -6,6 +6,7 @@
         <!-- Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=The+Girl+Next+Door' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Marcellus' rel='stylesheet' type='text/css'>
         
         <!-- CSS -->
         <link rel="stylesheet" href="../../../.././theme/css/main.css" type="text/css" />
@@ -52,9 +53,9 @@
             
 <section id="content" class="body">
   <header class="post">
-    <h2 class="entry-title">
+    <h1 class="entry-title">
       Creating a blog with Pelican
-    </h2>
+    </h1>
   </header>
   <footer class="post-info">
     <abbr>
@@ -247,40 +248,50 @@ a blank template named <tt class="docutils literal">settings.py</tt>, so we crea
 same variables as <tt class="docutils literal">local_settings.py</tt> but without
 the vars data. Edit the data you need
 (You can store the <tt class="docutils literal">local_settings.py</tt> data in a private gist manually):</p>
-<blockquote>
-<p># -<em>- coding: utf-8 -</em>-</p>
-<p>AUTHOR = 'xxxxxxxx xxxxxxxxxxxxx'
+<pre class="literal-block">
+# -*- coding: utf-8 -*-
+
+AUTHOR = 'xxxxxxxx xxxxxxxxxxxxx'
 SITENAME = &quot;xxxxxxxxxxxx&quot;
-SITEURL = '<a class="reference external" href="http://xxxxxxxxxxxxxxxxx">http://xxxxxxxxxxxxxxxxx</a>'
-TIMEZONE = &quot;Europe/Madrid&quot;</p>
-<p>GITHUB_URL = '<a class="reference external" href="http://github.com/XXXXX">http://github.com/XXXXX</a>'
+SITEURL = 'http://xxxxxxxxxxxxxxxxx'
+TIMEZONE = &quot;Europe/Madrid&quot;
+
+GITHUB_URL = 'http://github.com/XXXXX'
 DISQUS_SITENAME = &quot;XXXXXXXXXX&quot;
-EMAIL = &quot;<a class="reference external" href="mailto:XXXXXXXXXXXXXX&#64;gmail.com">XXXXXXXXXXXXXX&#64;gmail.com</a>&quot;
+EMAIL = &quot;XXXXXXXXXXXXXX&#64;gmail.com&quot;
 PDF_GENERATOR = False
 REVERSE_CATEGORY_ORDER = True
 LOCALE = 'en_US'
-DEFAULT_PAGINATION = 5</p>
-<p>THEME = &quot;iris&quot;</p>
-<p>FEED_RSS = 'feeds/all.rss.xml'
-CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'</p>
-<p>LINKS = (('XXXXX XXXX', '<a class="reference external" href="http://YYYYYYYYYYY.ZZZ">http://YYYYYYYYYYY.ZZZ</a>'),)</p>
-<dl class="docutils">
-<dt>SOCIAL = (('twitter', '<a class="reference external" href="http://twitter.com/XXXXXX">http://twitter.com/XXXXXX</a>'),</dt>
-<dd>('linkedin', '<a class="reference external" href="http://www.linkedin.com/in/XXXXXXX">http://www.linkedin.com/in/XXXXXXX</a>'),
-('github', GITHUB_URL),)</dd>
-</dl>
-<p>OUTPUT_PATH = 'output'
-PATH = 'src'</p>
-<p>ARTICLE_URL = &quot;posts/{date:%Y}/{date:%m}/{slug}/&quot;
-ARTICLE_SAVE_AS = &quot;posts/{date:%Y}/{date:%m}/{slug}/index.html&quot;</p>
-<p>GOSQUARED_SITENAME = &quot;XXX-YYYYYY-X&quot;</p>
-<p># global metadata to all the contents
-#DEFAULT_METADATA = (('yeah', 'it is'),)</p>
-<p># static paths will be copied under the same name
-STATIC_PATHS = [&quot;images&quot;, ]</p>
-<p># A list of files to copy from the source to the destination
-#FILES_TO_COPY = (('extra/robots.txt', 'robots.txt'),)</p>
-</blockquote>
+DEFAULT_PAGINATION = 5
+
+THEME = &quot;iris&quot;
+
+FEED_RSS = 'feeds/all.rss.xml'
+CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
+
+LINKS = (('XXXXX XXXX', 'http://YYYYYYYYYYY.ZZZ'),)
+
+SOCIAL = (('twitter', 'http://twitter.com/XXXXXX'),
+          ('linkedin', 'http://www.linkedin.com/in/XXXXXXX'),
+          ('github', GITHUB_URL),)
+
+OUTPUT_PATH = 'output'
+PATH = 'src'
+
+ARTICLE_URL = &quot;posts/{date:%Y}/{date:%m}/{slug}/&quot;
+ARTICLE_SAVE_AS = &quot;posts/{date:%Y}/{date:%m}/{slug}/index.html&quot;
+
+GOSQUARED_SITENAME = &quot;XXX-YYYYYY-X&quot;
+
+# global metadata to all the contents
+#DEFAULT_METADATA = (('yeah', 'it is'),)
+
+# static paths will be copied under the same name
+STATIC_PATHS = [&quot;images&quot;, ]
+
+# A list of files to copy from the source to the destination
+#FILES_TO_COPY = (('extra/robots.txt', 'robots.txt'),)
+</pre>
 <p>Now that we have our <tt class="docutils literal">settings.py</tt> and <tt class="docutils literal">local_settings.py</tt>.</p>
 <p>To generate the static html we use:</p>
 <pre class="literal-block">
@@ -537,7 +548,7 @@ $ pip install fabric
                 </div>
                 <div>
                     Social icons (font awesome) by <a href="http://fortawesome.github.com/Font-Awesome/"> fort awesome<a>.
-                    <a href="http://www.google.com/webfonts/specimen/The+Girl+Next+Door">Title</a> and <a href="http://www.google.com/webfonts/specimen/Inconsolata">source code</a> fonts by google fonts
+                    <a href="http://www.google.com/webfonts/specimen/The+Girl+Next+Door">Title</a>, <a href="http://www.google.com/webfonts/specimen/Marcellus">headers</a> and <a href="http://www.google.com/webfonts/specimen/Inconsolata">source code</a> fonts by google fonts
                 </div>
                 <div class="social">
                     

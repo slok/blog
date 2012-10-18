@@ -200,40 +200,50 @@ a blank template named &lt;tt class="docutils literal"&gt;settings.py&lt;/tt&gt;
 same variables as &lt;tt class="docutils literal"&gt;local_settings.py&lt;/tt&gt; but without
 the vars data. Edit the data you need
 (You can store the &lt;tt class="docutils literal"&gt;local_settings.py&lt;/tt&gt; data in a private gist manually):&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;# -&lt;em&gt;- coding: utf-8 -&lt;/em&gt;-&lt;/p&gt;
-&lt;p&gt;AUTHOR = 'xxxxxxxx xxxxxxxxxxxxx'
+&lt;pre class="literal-block"&gt;
+# -*- coding: utf-8 -*-
+
+AUTHOR = 'xxxxxxxx xxxxxxxxxxxxx'
 SITENAME = &amp;quot;xxxxxxxxxxxx&amp;quot;
-SITEURL = '&lt;a class="reference external" href="http://xxxxxxxxxxxxxxxxx"&gt;http://xxxxxxxxxxxxxxxxx&lt;/a&gt;'
-TIMEZONE = &amp;quot;Europe/Madrid&amp;quot;&lt;/p&gt;
-&lt;p&gt;GITHUB_URL = '&lt;a class="reference external" href="http://github.com/XXXXX"&gt;http://github.com/XXXXX&lt;/a&gt;'
+SITEURL = 'http://xxxxxxxxxxxxxxxxx'
+TIMEZONE = &amp;quot;Europe/Madrid&amp;quot;
+
+GITHUB_URL = 'http://github.com/XXXXX'
 DISQUS_SITENAME = &amp;quot;XXXXXXXXXX&amp;quot;
-EMAIL = &amp;quot;&lt;a class="reference external" href="mailto:XXXXXXXXXXXXXX&amp;#64;gmail.com"&gt;XXXXXXXXXXXXXX&amp;#64;gmail.com&lt;/a&gt;&amp;quot;
+EMAIL = &amp;quot;XXXXXXXXXXXXXX&amp;#64;gmail.com&amp;quot;
 PDF_GENERATOR = False
 REVERSE_CATEGORY_ORDER = True
 LOCALE = 'en_US'
-DEFAULT_PAGINATION = 5&lt;/p&gt;
-&lt;p&gt;THEME = &amp;quot;iris&amp;quot;&lt;/p&gt;
-&lt;p&gt;FEED_RSS = 'feeds/all.rss.xml'
-CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'&lt;/p&gt;
-&lt;p&gt;LINKS = (('XXXXX XXXX', '&lt;a class="reference external" href="http://YYYYYYYYYYY.ZZZ"&gt;http://YYYYYYYYYYY.ZZZ&lt;/a&gt;'),)&lt;/p&gt;
-&lt;dl class="docutils"&gt;
-&lt;dt&gt;SOCIAL = (('twitter', '&lt;a class="reference external" href="http://twitter.com/XXXXXX"&gt;http://twitter.com/XXXXXX&lt;/a&gt;'),&lt;/dt&gt;
-&lt;dd&gt;('linkedin', '&lt;a class="reference external" href="http://www.linkedin.com/in/XXXXXXX"&gt;http://www.linkedin.com/in/XXXXXXX&lt;/a&gt;'),
-('github', GITHUB_URL),)&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;p&gt;OUTPUT_PATH = 'output'
-PATH = 'src'&lt;/p&gt;
-&lt;p&gt;ARTICLE_URL = &amp;quot;posts/{date:%Y}/{date:%m}/{slug}/&amp;quot;
-ARTICLE_SAVE_AS = &amp;quot;posts/{date:%Y}/{date:%m}/{slug}/index.html&amp;quot;&lt;/p&gt;
-&lt;p&gt;GOSQUARED_SITENAME = &amp;quot;XXX-YYYYYY-X&amp;quot;&lt;/p&gt;
-&lt;p&gt;# global metadata to all the contents
-#DEFAULT_METADATA = (('yeah', 'it is'),)&lt;/p&gt;
-&lt;p&gt;# static paths will be copied under the same name
-STATIC_PATHS = [&amp;quot;images&amp;quot;, ]&lt;/p&gt;
-&lt;p&gt;# A list of files to copy from the source to the destination
-#FILES_TO_COPY = (('extra/robots.txt', 'robots.txt'),)&lt;/p&gt;
-&lt;/blockquote&gt;
+DEFAULT_PAGINATION = 5
+
+THEME = &amp;quot;iris&amp;quot;
+
+FEED_RSS = 'feeds/all.rss.xml'
+CATEGORY_FEED_RSS = 'feeds/%s.rss.xml'
+
+LINKS = (('XXXXX XXXX', 'http://YYYYYYYYYYY.ZZZ'),)
+
+SOCIAL = (('twitter', 'http://twitter.com/XXXXXX'),
+          ('linkedin', 'http://www.linkedin.com/in/XXXXXXX'),
+          ('github', GITHUB_URL),)
+
+OUTPUT_PATH = 'output'
+PATH = 'src'
+
+ARTICLE_URL = &amp;quot;posts/{date:%Y}/{date:%m}/{slug}/&amp;quot;
+ARTICLE_SAVE_AS = &amp;quot;posts/{date:%Y}/{date:%m}/{slug}/index.html&amp;quot;
+
+GOSQUARED_SITENAME = &amp;quot;XXX-YYYYYY-X&amp;quot;
+
+# global metadata to all the contents
+#DEFAULT_METADATA = (('yeah', 'it is'),)
+
+# static paths will be copied under the same name
+STATIC_PATHS = [&amp;quot;images&amp;quot;, ]
+
+# A list of files to copy from the source to the destination
+#FILES_TO_COPY = (('extra/robots.txt', 'robots.txt'),)
+&lt;/pre&gt;
 &lt;p&gt;Now that we have our &lt;tt class="docutils literal"&gt;settings.py&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;local_settings.py&lt;/tt&gt;.&lt;/p&gt;
 &lt;p&gt;To generate the static html we use:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
