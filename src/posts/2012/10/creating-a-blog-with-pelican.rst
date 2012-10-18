@@ -206,7 +206,7 @@ will not be commited to the git repo, maybe has personal data. But we will uploa
 a blank template named ``settings.py``, so we create also this one, that has the 
 same variables as ``local_settings.py`` but without
 the vars data. Edit the data you need 
-(You can store the ``local_settings.py`` data in a private gist manually):
+(You can store the ``local_settings.py`` data in a private gist manually)::
 
     # -*- coding: utf-8 -*-
 
