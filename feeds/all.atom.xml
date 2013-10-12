@@ -1,5 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>slok's Blog</title><link href="http://blog.xlarrakoetxea.org/" rel="alternate"></link><link href="http://blog.xlarrakoetxea.org/feeds/all.atom.xml" rel="self"></link><id>http://blog.xlarrakoetxea.org/</id><updated>2012-10-17T10:41:00+02:00</updated><entry><title>New pelican theme</title><link href="http://blog.xlarrakoetxea.org/posts/2012/10/new-pelican-theme/" rel="alternate"></link><updated>2012-10-17T10:41:00+02:00</updated><author><name>Xabier Larrakoetxea</name></author><id>tag:blog.xlarrakoetxea.org,2012-10-17:posts/2012/10/new-pelican-theme/</id><summary type="html">&lt;p&gt;On monday I put this blog up and running, but I didn't liked any of the themes
+<feed xmlns="http://www.w3.org/2005/Atom"><title>slok's Blog</title><link href="http://blog.xlarrakoetxea.org/" rel="alternate"></link><link href="http://blog.xlarrakoetxea.org/feeds/all.atom.xml" rel="self"></link><id>http://blog.xlarrakoetxea.org/</id><updated>2013-10-15T14:15:00+02:00</updated><entry><title>Virtualenvwrapper in Arch Linux</title><link href="http://blog.xlarrakoetxea.org/posts/2013/10/Virtualenvwrapper-in-Arch-Linux/" rel="alternate"></link><updated>2013-10-15T14:15:00+02:00</updated><author><name>Xabier Larrakoetxea</name></author><id>tag:blog.xlarrakoetxea.org,2013-10-15:posts/2013/10/Virtualenvwrapper-in-Arch-Linux/</id><summary type="html">&lt;p&gt;It's been almost a year since I wrote my last post, well I hope that the future
+of this blog will be more updated :O&lt;/p&gt;
+&lt;p&gt;Today I pick up My arch linux laptop (I'm a long time user of Slackware) and
+the problem basically is that Arch's default Python version is Python3, that's
+fine because yo have also Python2 and they can use both at the same time. The
+problem appears when you start messing up with
+&lt;a class="reference external" href="http://www.pip-installer.org"&gt;Pip&lt;/a&gt;,
+&lt;a class="reference external" href="http://www.virtualenv.org/"&gt;Virtualenv&lt;/a&gt; and
+&lt;a class="reference external" href="http://virtualenvwrapper.readthedocs.org/"&gt;Virtualenwrapper&lt;/a&gt;. So here is
+this little receipe to get working in a fast and clean way.&lt;/p&gt;
+&lt;div class="section" id="install-all-the-stuff"&gt;
+&lt;h2&gt;Install all the stuff&lt;/h2&gt;
+&lt;p&gt;Install Python2 and python3 if you don't have it already:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+# pacman -Sy python2 python3
+&lt;/pre&gt;
+&lt;p&gt;Install &lt;tt class="docutils literal"&gt;pip&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;virtualenv&lt;/tt&gt; (for python2) with pacman:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+# pacman -Sy python2-pip python2-virtualenv
+&lt;/pre&gt;
+&lt;p&gt;Install with pip &lt;tt class="docutils literal"&gt;virtualenvwrapper&lt;/tt&gt;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+# pip2 install virtualenvwrapper
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="configure-virtualenvwrapper"&gt;
+&lt;h2&gt;Configure virtualenvwrapper&lt;/h2&gt;
+&lt;p&gt;We have installed all the neccessary things, So far so good... let's configure
+our virtualenvwrapper adding to our &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;/home/$USER/.bashrc&lt;/span&gt;&lt;/tt&gt; some lines&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;#Virtualenvwrapper&lt;/span&gt;
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;WORKON_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/.virtualenvs
+&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PROJECT_HOME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;/Projects
+&lt;span class="nb"&gt;source&lt;/span&gt; /usr/bin/virtualenvwrapper.sh
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Lets test it! Open a new console and... OOPS!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;If Python could not import the module virtualenvwrapper.hook_loader,
+check that virtualenv has been installed for
+VIRTUALENVWRAPPER_PYTHON=/usr/bin/python and that PATH is
+set properly.
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let's add the correct path to our Python in the &lt;tt class="docutils literal"&gt;bashrc&lt;/tt&gt; before
+&lt;tt class="docutils literal"&gt;source /usr/bin/virtualenvwrapper.sh&lt;/tt&gt; line:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;VIRTUALENVWRAPPER_PYTHON&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/bin/python2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Open a console, and... no errors :D, lets test it:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ mkvirtualenv test
+which: no virtualenv in (/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl)
+ERROR: virtualenvwrapper could not find virtualenv in your path
+&lt;/pre&gt;
+&lt;p&gt;No problem, add the correct virtualenv to &lt;tt class="docutils literal"&gt;bashrc&lt;/tt&gt; before
+&lt;tt class="docutils literal"&gt;source /usr/bin/virtualenvwrapper.sh&lt;/tt&gt; line:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;VIRTUALENVWRAPPER_VIRTUALENV&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;virtualenv2
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Last test:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ mkvirtualenv test
+New python executable in test/bin/python2
+Also creating executable in test/bin/python
+Installing Setuptools............done.
+Installing Pip...................done.
+(test)$ python --version
+Python 2.7.5
+&lt;/pre&gt;
+&lt;p&gt;That's it :)&lt;/p&gt;
+&lt;/div&gt;
+</summary><category term="howto"></category><category term="python"></category><category term="arch"></category><category term="linux"></category><category term="virtualenv"></category><category term="virtualenvwrapper"></category><category term="pip"></category></entry><entry><title>New pelican theme</title><link href="http://blog.xlarrakoetxea.org/posts/2012/10/new-pelican-theme/" rel="alternate"></link><updated>2012-10-17T10:41:00+02:00</updated><author><name>Xabier Larrakoetxea</name></author><id>tag:blog.xlarrakoetxea.org,2012-10-17:posts/2012/10/new-pelican-theme/</id><summary type="html">&lt;p&gt;On monday I put this blog up and running, but I didn't liked any of the themes
 , so... yesterday when I woke up (Currently I'm searching for
 a Python developer job) I thought that I had to create a new theme, this theme
 in my mind was very readable, clear and simple, and suddenly the &lt;a class="reference external" href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt;

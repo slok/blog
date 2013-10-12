@@ -48,7 +48,7 @@
           <li class="current"><a href="http://blog.xlarrakoetxea.org">Blog</a> </li>
           <li><a href="http://blog.xlarrakoetxea.org/archives.html">Archive</a></li>
           <li><a href="http://blog.xlarrakoetxea.org/tags.html">Tags</a> </li>
-          <li><a href="http://blog.xlarrakoetxea.org/feeds/all.rss.xml">RSS</a> </li>
+          <li><a href="feeds/all.rss.xml">RSS</a> </li>
         </ol>
       </div>
         <header id="banner" class="body">
@@ -57,40 +57,100 @@
         <nav id="menu"><ul>
         </ul></nav><!-- /#menu -->
         <div class="box">
-        
-<section id="content">
-<div class="posts">
-    <ol id="post-list">
-        
-        <li>
-            <article class="archive">
-                <header> 
-                    <h1 class="archive-entry-title">
-                        <a href="http://blog.xlarrakoetxea.org/posts/2013/10/Virtualenvwrapper-in-Arch-Linux/" rel="bookmark" title="Permalink to Virtualenvwrapper in Arch Linux">Virtualenvwrapper in Arch Linux</a>
-                    </h1> 
-                </header>
-                <footer class="post-info">
-                    <abbr>
-                      Tue 15 October 2013 
-                         By <a class="url fn" href="http://blog.xlarrakoetxea.org/author/xabier-larrakoetxea.html">Xabier Larrakoetxea</a>
+<section id="content" class="body">
+  <header class="post">
+    <h1 class="entry-title">
+      Virtualenvwrapper in Arch Linux
+    </h1>
+  </header>
+  <footer class="post-info">
+    <abbr>
+      Tue 15 October 2013 
+         By <a class="url fn" href="http://blog.xlarrakoetxea.org/author/xabier-larrakoetxea.html">Xabier Larrakoetxea</a>
   
-                    </abbr>
-                    <div class="entry-summary"> <p>It's been almost a year since I wrote my last post, well I hope that the future
+    </abbr>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>It's been almost a year since I wrote my last post, well I hope that the future
 of this blog will be more updated :O</p>
 <p>Today I pick up My arch linux laptop (I'm a long time user of Slackware) and
-the problem basically is that Arch's ...</p>
-                    <a href="http://blog.xlarrakoetxea.org/posts/2013/10/Virtualenvwrapper-in-Arch-Linux/">read more</a></div>
-                </footer><!-- /.post-info -->
-                <!-- /.entry-content -->
-            </article>
-        </li>
-    </ol><!-- /#posts-list -->
+the problem basically is that Arch's default Python version is Python3, that's
+fine because yo have also Python2 and they can use both at the same time. The
+problem appears when you start messing up with
+<a class="reference external" href="http://www.pip-installer.org">Pip</a>,
+<a class="reference external" href="http://www.virtualenv.org/">Virtualenv</a> and
+<a class="reference external" href="http://virtualenvwrapper.readthedocs.org/">Virtualenwrapper</a>. So here is
+this little receipe to get working in a fast and clean way.</p>
+<div class="section" id="install-all-the-stuff">
+<h2>Install all the stuff</h2>
+<p>Install Python2 and python3 if you don't have it already:</p>
+<pre class="literal-block">
+# pacman -Sy python2 python3
+</pre>
+<p>Install <tt class="docutils literal">pip</tt> and <tt class="docutils literal">virtualenv</tt> (for python2) with pacman:</p>
+<pre class="literal-block">
+# pacman -Sy python2-pip python2-virtualenv
+</pre>
+<p>Install with pip <tt class="docutils literal">virtualenvwrapper</tt>:</p>
+<pre class="literal-block">
+# pip2 install virtualenvwrapper
+</pre>
 </div>
-<p class="paginator">
-    Page 1 / 4
-        <a href="http://blog.xlarrakoetxea.org/category/blog2.html">&raquo;</a>
-</p>
-</section><!-- /#content -->
+<div class="section" id="configure-virtualenvwrapper">
+<h2>Configure virtualenvwrapper</h2>
+<p>We have installed all the neccessary things, So far so good... let's configure
+our virtualenvwrapper adding to our <tt class="docutils literal"><span class="pre">/home/$USER/.bashrc</span></tt> some lines</p>
+<div class="highlight"><pre><span class="c">#Virtualenvwrapper</span>
+<span class="nb">export </span><span class="nv">WORKON_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.virtualenvs
+<span class="nb">export </span><span class="nv">PROJECT_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/Projects
+<span class="nb">source</span> /usr/bin/virtualenvwrapper.sh
+</pre></div>
+<p>Lets test it! Open a new console and... OOPS!</p>
+<div class="highlight"><pre>If Python could not import the module virtualenvwrapper.hook_loader,
+check that virtualenv has been installed for
+VIRTUALENVWRAPPER_PYTHON=/usr/bin/python and that PATH is
+set properly.
+</pre></div>
+<p>Let's add the correct path to our Python in the <tt class="docutils literal">bashrc</tt> before
+<tt class="docutils literal">source /usr/bin/virtualenvwrapper.sh</tt> line:</p>
+<div class="highlight"><pre><span class="nb">export </span><span class="nv">VIRTUALENVWRAPPER_PYTHON</span><span class="o">=</span>/usr/bin/python2
+</pre></div>
+<p>Open a console, and... no errors :D, lets test it:</p>
+<pre class="literal-block">
+$ mkvirtualenv test
+which: no virtualenv in (/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl)
+ERROR: virtualenvwrapper could not find virtualenv in your path
+</pre>
+<p>No problem, add the correct virtualenv to <tt class="docutils literal">bashrc</tt> before
+<tt class="docutils literal">source /usr/bin/virtualenvwrapper.sh</tt> line:</p>
+<div class="highlight"><pre><span class="nb">export </span><span class="nv">VIRTUALENVWRAPPER_VIRTUALENV</span><span class="o">=</span>virtualenv2
+</pre></div>
+<p>Last test:</p>
+<pre class="literal-block">
+$ mkvirtualenv test
+New python executable in test/bin/python2
+Also creating executable in test/bin/python
+Installing Setuptools............done.
+Installing Pip...................done.
+(test)$ python --version
+Python 2.7.5
+</pre>
+<p>That's it :)</p>
+</div>
+
+  </div><!-- /.entry-content -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'sloks-static-blog'; 
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
             <hr/>
             <footer id="contentinfo" class="footer">
                 <div>

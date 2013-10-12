@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        
         <title>slok's Blog <small>pelican</small></title>
         <!-- Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
@@ -9,93 +8,93 @@
         <link href='http://fonts.googleapis.com/css?family=Marcellus' rel='stylesheet' type='text/css'>
         
         <!-- CSS -->
-        <link rel="stylesheet" href=".././theme/css/main.css" type="text/css" />
-        <link rel="stylesheet" href=".././theme/css/pygments.css" type="text/css" />
-        <link rel="stylesheet" href=".././theme/css/font-awesome.css" type="text/css" />
+        <link rel="stylesheet" href="http://blog.xlarrakoetxea.org/theme/css/main.css" type="text/css" />
+        <link rel="stylesheet" href="http://blog.xlarrakoetxea.org/theme/css/pygments.css" type="text/css" />
+        <link rel="stylesheet" href="http://blog.xlarrakoetxea.org/theme/css/font-awesome.css" type="text/css" />
         <meta charset="utf-8" />
       
-        
         <link href="http://blog.xlarrakoetxea.org/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="slok's Blog RSS Feed" />
-        
 
         <!-- Javascript-->
-        <script src=".././theme/js/invisible-menu-scroll.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-        <script type="text/javascript"> 
-          $(function() {
+        <script async src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+        <script async type="text/javascript"> 
+        $(function() {
+            function invisibleMenu() {
+                var now = 0;
+                var pixels = 300;
+                var opacity = -1;
+
+                var move = function() {
+                    now = $(window).scrollTop();
+                    if (now > pixels && opacity !== 0)
+                        opacity = 0;
+                    else if (now < pixels){
+                        // Depends on the position not if scrolls down or up
+                        opacity = (1 - now/pixels);
+                    }
+                    $("div.navigation").css({"opacity": opacity});
+                }
+                $(window).scroll(move);
+                move();
+            }
             invisibleMenu();
           });
-        </script> 
-        
+          </script> 
 </head>
 
 <body id="index" class="home">
-    
      <div class="navigation">
         <ol class="nav">
-          <li><a href="../.">Blog</a> </li>
-          <li><a href=".././archives.html">Archive</a></li>
-          <li class="current"><a href=".././tags.html">Tags</a> </li>
-          <li><a href=".././feeds/all.rss.xml">RSS</a> </li>
+          <li><a href="http://blog.xlarrakoetxea.org">Blog</a> </li>
+          <li><a href="http://blog.xlarrakoetxea.org/archives.html">Archive</a></li>
+          <li class="current"><a href="http://blog.xlarrakoetxea.org/tags.html">Tags</a> </li>
+          <li><a href="http://blog.xlarrakoetxea.org/feeds/all.rss.xml">RSS</a> </li>
         </ol>
       </div>
-
         <header id="banner" class="body">
-                <div class="banner"><a href="../.">slok's Blog <strong></strong></a></div>
+                <div class="banner"><a href="http://blog.xlarrakoetxea.org">slok's Blog <strong></strong></a></div>
         </header><!-- /#banner -->
         <nav id="menu"><ul>
-        
-        
-          
-        
         </ul></nav><!-- /#menu -->
         <div class="box">
-                    
+        
 <section id="content">
 <div class="posts">
     <ol id="post-list">
-            
+        
         <li>
             <article class="archive">
                 <header> 
                     <h1 class="archive-entry-title">
-                        <a href=".././posts/2012/10/new-pelican-theme/" rel="bookmark" title="Permalink to New pelican theme">New pelican theme</a>
+                        <a href="http://blog.xlarrakoetxea.org/posts/2012/10/new-pelican-theme/" rel="bookmark" title="Permalink to New pelican theme">New pelican theme</a>
                     </h1> 
                 </header>
                 <footer class="post-info">
                     <abbr>
                       Wed 17 October 2012 
-                      
-                         By <a class="url fn" href=".././author/xabier-larrakoetxea.html">Xabier Larrakoetxea</a>
-                        
+                         By <a class="url fn" href="http://blog.xlarrakoetxea.org/author/xabier-larrakoetxea.html">Xabier Larrakoetxea</a>
+  
                     </abbr>
                     <div class="entry-summary"> <p>On monday I put this blog up and running, but I didn't liked any of the themes
 , so... yesterday when I woke up (Currently I'm searching for
 a Python developer job) I thought that I had to create a new theme, this theme
 in my mind was very ...</p>
-                    <a href=".././posts/2012/10/new-pelican-theme/">read more</a></div>
+                    <a href="http://blog.xlarrakoetxea.org/posts/2012/10/new-pelican-theme/">read more</a></div>
                 </footer><!-- /.post-info -->
                 <!-- /.entry-content -->
             </article>
         </li>
-    
     </ol><!-- /#posts-list -->
 </div>
-
 <p class="paginator">
-    
     Page 1 / 2
-    
-        <a href=".././tag/pelican2.html">&raquo;</a>
-    
+        <a href="http://blog.xlarrakoetxea.org/tag/pelican2.html">&raquo;</a>
 </p>
-
 </section><!-- /#content -->
-
             <hr/>
             <footer id="contentinfo" class="footer">
                 <div>
-                    <a href="../.">Xabier Larrakoetxea</a> (2012)
+                    <a href="http://blog.xlarrakoetxea.org">Xabier Larrakoetxea</a> (2012)
                 </div>
                 <div>
                     This work is licensed under <a rel="license" href="http://opensource.org/licenses/bsd-3-clause">3 clause BSD</a>. Source code available on <a rel="source code" href="https://github.com/slok/blog">Github</a>
@@ -106,42 +105,35 @@ in my mind was very ...</p>
                     <a href="http://github.com/slok/iris">Theme</a> by <a href="http://xlarrakoetxea.org">Xabier Larrakoetxea</a> based on <a href="http://flask.pocoo.org/">Flask</a> theme
                 </div>
                 <div>
-                    Social icons (font awesome) by <a href="http://fortawesome.github.com/Font-Awesome/"> fort awesome<a>.
+                    Social icons (font awesome) by <a href="http://fortawesome.github.com/Font-Awesome/"> fort awesome</a>.
                     <a href="http://www.google.com/webfonts/specimen/The+Girl+Next+Door">Title</a>, <a href="http://www.google.com/webfonts/specimen/Marcellus">headers</a> and <a href="http://www.google.com/webfonts/specimen/Inconsolata">source code</a> fonts by google fonts
                 </div>
                 <div class="social">
-                    
                         <a href="http://twitter.com/slok69"><i class="icon-twitter"></i>  </a>
-                    
                         <a href="http://www.linkedin.com/in/xlarrakoetxea"><i class="icon-linkedin"></i>  </a>
-                    
-                        <a href="http://github.com/slok/"><i class="icon-github"></i>  </a>
-                    
-                    
+                        <a href="http://github.com/slok"><i class="icon-github"></i>  </a>
                         <a href="mailto:xlarrakoetxea@gmail.com"><i class="icon-envelope"></i> </a>
-                    
                 </div>
             </footer><!-- /#contentinfo -->
         </div>
         <!--Add statistycs-->
-        
+
 <script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', "UA-35618955-1"]);
-  
-  
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
+  var GoSquared = {};
+  GoSquared.acct = "GSN-343244-N";
+  (function(w){
+    function gs(){
+      w._gstc_lt = +new Date;
+      var d = document, g = d.createElement("script");
+      g.type = "text/javascript";
+      g.src = "//d1l6p2sc9645hc.cloudfront.net/tracker.js";
+      var s = d.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(g, s);
+    }
+    w.addEventListener ?
+      w.addEventListener("load", gs, false) :
+      w.attachEvent("onload", gs);
+  })(window);
 </script>
-
-
-
 </body>
 </html>
